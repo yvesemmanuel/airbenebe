@@ -7,7 +7,6 @@ Scenario: Login with non-existing user account
 	When I try to login with a non-existing user account
 	Then I see an error message (“non-existing user account”)
 
-
 Scenario: Login with wrong password account
 	Given I am at the Login page
 	When I try to login with a wrong password account
