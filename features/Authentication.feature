@@ -17,7 +17,20 @@ Scenario: Unsuccessful login (wrong password account)
 Scenario: Unsuccessful new user register (invalid email account)
 	Given I am at the User Register page
 	When I try to create a new user with email “yefo@ufpe.cin.br” and password "n0tk1dd1ng"
+	And I select that I accept the terms of service (checkbox)
 	Then I see an error message (email not properly formatted/doesn't exist)
+	
+Scenario: Unsuccessful new user register (weak password)
+	Given I am at the User Register page
+	When I try to create a new user with email “yefo@ufpe.cin.br” and password "12345"
+	And I select that I accept the terms of service (checkbox)
+	Then I see an error message (try an alphanumerical password)
+	
+Scenario: Unsuccessful new user register (terms of service not accepted)
+	Given I am at the User Register page
+	When I try to create a new user with email “yefo@ufpe.cin.br” and password "n0tk1dd1ng"
+	And I don't select that I accept the terms of service (checkbox)
+	Then I see an error message (try an alphanumerical password)
 
 Scenario: Successful user login
 	Given I am at the Login page
@@ -27,9 +40,5 @@ Scenario: Successful user login
 Scenario: Successful new user register
 	Given I am at the User Register page
 	When I try to create a new user with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng” 
+	And I select that I accept the terms of service (checkbox)
 	Then I am redirected to the Main page
-
-Scenario: Unsuccessful new user register (weak password)
-	Given I am at the User Register page
-	When I try to create a new user with email “yefo@ufpe.cin.br” and password "12345"
-	Then I see an error message (try an alphanumerical password)
