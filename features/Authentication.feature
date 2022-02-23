@@ -2,27 +2,34 @@ Feature: User Authentication
 	As a registered member in the system
 	I want to have access to all its internal features, which are only accessible after a successful login authentication.
 
-Scenario: Login with non-existing user account
+Scenario: Unsuccessful login (non-existing user account)
 	Given I am at the Login page
-	When I try to login with a non-existing user account
-	Then I see an error message (“non-existing user account”)
+	When I try to login with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng”
+	Then I am redirected to the Login page
+	And I see an error message (email not registered in the database)
 
-Scenario: Login with wrong password account
+Scenario: Unsuccessful login (wrong password account)
 	Given I am at the Login page
-	When I try to login with a wrong password account
-	Then I see an error message (“wrong password account”)
+	When I try to login with email “yefo@cin.ufpe.br” and password “notkidding”
+	Then I am redirected to the Login page
+	And I see an error message (email registered in the database associated with another password)
 
-Scenario: New user register with invalid email account
+Scenario: Unsuccessful new user register (invalid email account)
 	Given I am at the User Register page
-	When I try to create a new user with an invalid email account
-	Then I see an error message (“invalid email account”)
+	When I try to create a new user with email “yefo@ufpe.cin.br” and password "n0tk1dd1ng"
+	Then I see an error message (email not properly formatted/doesn't exist)
 
 Scenario: Successful user login
 	Given I am at the Login page
-	When I try to login with email “yefo@cin.ufpe.br” and password “notkidding”
+	When I try to login with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng”
 	Then I am redirected to the Main page
 
 Scenario: Successful new user register
 	Given I am at the User Register page
-	When I try to create a new user with email “yefo@cin.ufpe.br” and password “notkidding” 
+	When I try to create a new user with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng” 
 	Then I am redirected to the Main page
+
+Scenario: Unsuccessful new user register (weak password)
+	Given I am at the User Register page
+	When I try to create a new user with email “yefo@ufpe.cin.br” and password "12345"
+	Then I see an error message (try an alphanumerical password)
