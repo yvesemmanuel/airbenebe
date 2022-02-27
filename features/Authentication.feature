@@ -1,6 +1,6 @@
 Feature: User Authentication
 	As a registered member in the system
-	I want to have access to all its internal features, which are only accessible after a successful login authentication.
+	I want to have access to all its internal features, which are only accessible after a successful login authentication
 
 Scenario: Unsuccessful login (non-existing user account)
 	Given I am at the Login page
