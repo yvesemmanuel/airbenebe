@@ -2,6 +2,8 @@ Feature: User Authentication
 	As a registered member in the system
 	I want to have access to all its internal features, which are only accessible after a successful login authentication
 
+# negatives scenarios
+
 Scenario: Unsuccessful login (non-existing user account)
 	Given I am at the Login page
 	When I try to login with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng”
@@ -31,6 +33,8 @@ Scenario: Unsuccessful new user register (terms of service not accepted)
 	When I try to create a new user with email “yefo@ufpe.cin.br” and password "n0tk1dd1ng"
 	And I don't select that I accept the terms of service (checkbox)
 	Then I see an error message (try an alphanumerical password)
+
+# positive scenarios
 
 Scenario: Successful user login
 	Given I am at the Login page
