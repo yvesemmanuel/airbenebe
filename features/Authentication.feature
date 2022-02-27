@@ -37,12 +37,12 @@ Scenario: Unsuccessful new user register (terms of service not accepted)
 # positive scenarios
 
 Scenario: Successful user login
-	Given I am at the Login page
+	Given I am at the landing page
 	When I try to login with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng”
 	Then I am redirected to the Main page
 
 Scenario: Successful new user register
-	Given I am at the User Register page
+	Given I am at the landing page
 	When I try to create a new user with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng” 
 	And I select that I accept the terms of service (checkbox)
 	Then I am redirected to the Main page
