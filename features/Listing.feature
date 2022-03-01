@@ -1,6 +1,8 @@
 Feature: Listing_of_apartments
     Database apartments listed by location.
 
+# Positive scenarios
+
 Scenario: Test filter operation
 Given I'm on the list of apartments by location
 When I use filters option and select pool
@@ -25,3 +27,15 @@ Given I am on the list of apartments by location
 When I click on the search bar
 And I type the name anúncio 8
 Then I see the filtered list of apartments with the name anúncio 8
+
+# Negative scenarios
+
+Scenario: test filter operation fails
+Since I am on the list of apartments by location
+When I use the filters option and select pool
+Then an error message appears ("no property fits the filter")
+
+Scenario: Clicking on an apartment
+Since I'm on the list of "apartments by location"
+When I click on one of the listed ads
+Then I see an error message "This property is not in the database"x
