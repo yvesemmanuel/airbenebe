@@ -62,3 +62,4 @@ Scenario: failing to making an ad unavailable
 	Then I see a "make unavailable" icon
 	And I click on this icon
     Then I see a warning which says "Please end all ongoing negotiations before making your listing unavailable"
+    Then lorem ipsum dolor
