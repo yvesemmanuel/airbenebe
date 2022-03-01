@@ -43,6 +43,6 @@ Scenario: Successful user login
 
 Scenario: Successful new user register
 	Given I am at the landing page
-	When I try to create a new user with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng” 
+	When I try to create a new user with email “yefo@cin.ufpe.br” and password “n0tkidd1ng” 
 	And I select that I accept the terms of service (checkbox)
 	Then I am redirected to the Main page
