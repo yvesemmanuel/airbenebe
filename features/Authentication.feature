@@ -24,7 +24,7 @@ Scenario: Unsuccessful new user register (invalid email account)
 	
 Scenario: Unsuccessful new user register (weak password)
 	Given I am at the User Register page
-	When I try to create a new user with email “yefo@ufpe.cin.br” and password "12345"
+	When I try to create a new user with email “yefo@ufpe.cin.br” and password "12#45"
 	And I select that I accept the terms of service (checkbox)
 	Then I see an error message (try an alphanumerical password)
 	
