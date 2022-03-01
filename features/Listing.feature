@@ -25,11 +25,11 @@ Scenario: unsuccessful listing
     Then I can't confirm the registration until I fill out all mandatory blank spaces 
 
 
-Scenario: making an Ad unavailable
+Scenario: making an ad unavailable
 	Given I'm on the host's page
 	And I see all my listings
 	When I select my house's listing
-	And I see a "make unavailable"icon
+	And I see a "make unavailable" icon
 	When I click on this icon
 	Then I see a confirmation window 
 	When I confirm my selection
@@ -37,7 +37,7 @@ Scenario: making an Ad unavailable
 
 
 
-Scenario: deleting an Ad.
+Scenario: deleting an ad
     Given I'm on the host's page
 	And I see all my listings
 	When I select my house's listing
@@ -46,3 +46,19 @@ Scenario: deleting an Ad.
 	Then I see a confirmation window
 	When I confirm my selection
 	Then I can't see my listing anymore and it's also deleted from the Data Bank.
+
+Scenario: failing to delete a listing
+    Given I'm on the host's page
+	And I see all my listings
+	When I select my house's listing
+	Then I see a delete icon
+	And I click on this icon
+    Then I see a warning which says "Please end all ongoing negotiations before deleting"
+
+Scenario: failing to making an ad unavailable
+    Given I'm on the host's page
+	And I see all my listings
+	When I select my house's listing
+	Then I see a "make unavailable" icon
+	And I click on this icon
+    Then I see a warning which says "Please end all ongoing negotiations before making your listing unavailable"
