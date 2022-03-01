@@ -10,7 +10,7 @@ Scenario: Clicking on an apartment
 Given I am on the list of "apartments-by-location"
 When I click on one of the listed ads
 Then I am redirected to the ad stealth screen
-And I have the option to get in touch.
+And I have the option to get in touch
 
 Scenario: Favorite an apartment
 Given I am on the list of apartments by location
