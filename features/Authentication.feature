@@ -38,7 +38,7 @@ Scenario: Unsuccessful new user register (terms of service not accepted)
 
 Scenario: Successful user login
 	Given I am at the landing page
-	When I try to login with email “yefo@cin.ufpe.br” and password “n0tk1dd1ng”
+	When I try to login with email “yefo@cin.ufpe.br” and password “n0tk1dding”
 	Then I am redirected to the Main page
 
 Scenario: Successful new user register
