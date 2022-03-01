@@ -67,3 +67,8 @@ Scenario: questão 7-C
     Given lorem ipsum dolor
     And lorem ipsum dolor
     Then lorem ipsum dolor
+
+Scenario: questão 7-F
+    Given lalsalda
+    And kkakakaka
+    Then rsrsrsrs
