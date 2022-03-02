@@ -38,11 +38,21 @@ Then an error message appears ("no property fits the filter")
 Scenario: Clicking on an apartment
 Since I'm on the list of "apartments by location"
 When I click on one of the listed ads
+<<<<<<< HEAD
 Then I see an error message "This property is not in the database"
 Then question.
+=======
+Then I see an error message "This property is not in the database"x
+>>>>>>> desenvolvimento
 
 Scenario: apartment search
 Since I am on the list of apartments by location
 When I click on the search bar
 And I type the ad name 8
+<<<<<<< HEAD
 Then I see the error message "Unable to find a property with that name"
+=======
+Then I see an error message "No property was found with that name"
+
+Scenario: desenvolvimento
+>>>>>>> desenvolvimento
