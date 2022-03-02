@@ -57,3 +57,5 @@ Then I see an error message "No property was found with that name"
 Scenario: desenvolvimento
 >>>>>>> desenvolvimento
 Commit teste no master
+
+commit teste desenvolvimento
