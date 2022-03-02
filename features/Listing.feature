@@ -45,3 +45,5 @@ Since I am on the list of apartments by location
 When I click on the search bar
 And I type the ad name 8
 Then I see an error message "No property was found with that name"
+
+Scenario: desenvolvimento
