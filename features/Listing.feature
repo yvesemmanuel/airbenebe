@@ -39,3 +39,4 @@ Scenario: Clicking on an apartment
 Since I'm on the list of "apartments by location"
 When I click on one of the listed ads
 Then I see an error message "This property is not in the database"x
+then update question
