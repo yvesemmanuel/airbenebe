@@ -18,7 +18,7 @@ GUI Scenario: To rent without being logged in, entering a available date and a n
     And I fill the "date" field with "26/02/2022 to 28/02/2022"
     And I try to rent the property
     Then the property is not rented
-    And I see an error message saying "You must be logged in to perform a rental"
+    And I see an error message saying "You must be logged in to rent a property"
 
 GUI Scenario: To rent being logged in, entering a available date and a number of guests less than or equal to the property's capacity, but with payment being declined.
     Given I am logged in with the login "john123" and the password "1234".
