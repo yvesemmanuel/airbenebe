@@ -39,3 +39,9 @@ Scenario: Clicking on an apartment
 Since I'm on the list of "apartments by location"
 When I click on one of the listed ads
 Then I see an error message "This property is not in the database"x
+
+Scenario: apartment search
+Since I am on the list of apartments by location
+When I click on the search bar
+And I type the ad name 8
+Then I see an error message "No property was found with that name"
