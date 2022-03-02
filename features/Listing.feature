@@ -72,3 +72,8 @@ Scenario: questão 7-F
     Given lalsalda
     And kkakakaka
     Then rsrsrsrs
+
+Scenario: questão 8
+    Given lalsalda
+    And kkakakaka
+    Then rsrsrsrs
