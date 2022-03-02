@@ -59,7 +59,6 @@ GUI Scenario: To rent being logged in, entering a available date and a number of
     And I try to rent the property
     Then the property is not rented
     And I see an error message saying "Date or number of guests not entered or invalid"
-    Then teste
 
 Service Scenario: Tp rent a property by entering valid number of guests and date
     Given I access the system as "john123"
