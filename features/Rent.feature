@@ -66,3 +66,10 @@ Service Scenario: Tp rent a property by entering valid number of guests and date
     When I try to rent the property "Beach House" with date "26/02/2022 to 28/02/2022" and with guests "1"
     Then the system returns a rental confirmation message
     And it is stored in the system that the user "john123" rented the property "Beach House" with date "02/26/2022 to 02/28/2022" and with guests "1"
+
+Service Scenario: Renting a property without informing the date
+    Given I access the system as "john123"
+    And in the system it does not appear that "john123" rented the property "Beach House"
+    When I try to rent the property "Beach House" with guests "1", but without date
+    Then the system returns an error message about the absence of date
+    And in the system it does not appear that "john123" rented the property "Beach House"
