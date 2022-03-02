@@ -45,3 +45,8 @@ Scenario: Questão 7-b
    Given I am at 7-a 
    When I am at 7-b
    Then I am at 7-c
+
+Scenario: Questão 7-f
+   Given I am at 7-a 
+   When I am at 7-b
+   Then I am at 7-c
