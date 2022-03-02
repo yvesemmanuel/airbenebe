@@ -42,13 +42,3 @@ Scenario: Cancel Dates fail
    And I see the error message "Erro ao preencher o formulário de cancelamento do aluguel, tentar novamente"
    Then stakeholders
 
-Scenario: Questão 7-b
-   Given I am at 7-a 
-   When I am at 7-b
-   Then I am at 7-c
-
-Scenario: Questão 7-f
-   Given erro 
-   When consertar
-   Then conserto
-   And Ajustei o cenário
