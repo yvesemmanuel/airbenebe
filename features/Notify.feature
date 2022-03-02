@@ -40,9 +40,7 @@ Scenario: Cancel Dates fail
    And I dont Fill the form about the reason to cancel
    Then I click on the “Cancelar” button
    And I see the error message "Erro ao preencher o formulário de cancelamento do aluguel, tentar novamente"
-<<<<<<< HEAD
    Then stakeholders
-=======
 
 Scenario: Questão 7-b
    Given I am at 7-a 
@@ -53,4 +51,3 @@ Scenario: Questão 7-f
    Given I am at 7-a 
    When I am at 7-b
    Then I am at 7-c
->>>>>>> desenvolvimento_natan
