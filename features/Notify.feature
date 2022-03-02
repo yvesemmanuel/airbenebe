@@ -51,4 +51,4 @@ Scenario: Questão 7-f
    Given erro 
    When consertar
    Then conserto
-   and Ajustei o cenário
+   And Ajustei o cenário
