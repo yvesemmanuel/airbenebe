@@ -58,4 +58,4 @@ Scenario: desenvolvimento
 >>>>>>> desenvolvimento
 Commit teste no master
 
-commit teste desenvolvimento
+commit teste ajuste
