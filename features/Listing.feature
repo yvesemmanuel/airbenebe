@@ -72,4 +72,3 @@ Scenario: questão 7-F
     Given lalsalda
     And kkakakaka
     Then rsrsrsrs
-
