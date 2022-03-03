@@ -67,7 +67,7 @@ Service Scenario: To rent a property by entering valid number of guests and date
     Then the system returns a rental confirmation message
     And it is stored in the system that the user "john123" rented the property "Beach House" with date "02/26/2022 to 02/28/2022" and with guests "1"
 
-Service Scenario: Renting a property without informing the date
+Service Scenario: To rent a property without entering the date
     Given I access the system as "john123"
     And in the system it does not appear that "john123" rented the property "Beach House"
     When I try to rent the property "Beach House" with guests "1", but without date
