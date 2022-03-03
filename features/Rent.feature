@@ -51,7 +51,7 @@ GUI Scenario: To rent being logged in, entering a available date and without ent
 
 GUI Scenario: To rent being logged in, entering a available date and a number of guests greater than the property's capacity.
     Given I am logged in with the login "joao123" and the password "1234".
-    And I am on the page of the property "Beach House", with has a capacity of 3 guests.
+    And I am on the page of the property "Beach House", which has a capacity of 3 guests.
     And I see the field "date" empty
     And I see the field "guests" empty
     When I fill the "date" field with "26/02/2022 to 28/02/2022"
