@@ -7,54 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<mat-toolbar class="header">
-    <img class="logo" src="../assets/logo/logo.png" alt="Airbnb icon">
+<body>
 
-    <div class="btns">
-        <button button (click)="login.toggle()" mat-raised-button class="btn login">Entrar</button>
-        <button button (click)="register.toggle()" mat-raised-button class="btn login">Cadastrar</button>
+    <mat-toolbar class="header">
+        <img class="logo" src="../assets/logo/logo.png" alt="Airbnb icon">
+
+        <div class="btns">
+            <button mat-raised-button class="btn login ">Entrar</button>
+            <button mat-raised-button class="btn login ">Cadastrar</button>
+        </div>
+    </mat-toolbar>
+
+    <div class="container">
+        <h1>Encontre aqui um lar para chamar de seu!</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacinia elit id orci consectetur, semper malesuada lacus fringilla. Nunc vel dolor faucibus felis placerat elementum. Nunc viverra orci at justo fringilla, in lobortis odio vestibulum.
+            Vivamus id mi ultrices, consectetur sapien vitae, accumsan ante. Nulla eleifend tempor dolor. Maecenas et justo mauris.</p>
     </div>
 
-</mat-toolbar>
-
-<div class="Popup Entrar">
-    <app-modal #login>
-        <div>
-            <h1>Bem Vindo ao Arbenebe!</h1>
-            <form>
-                <input type="text" placeholder="Email" name="Email" required>
-                <input type="password" placeholder="Senha" name="Senha" required>
-            </form>
-        </div>
-        <div>
-            <p class="Senha-F">Esqueceu sua <a href="#">senha?</a></p>
-        </div>
-        <div class="btn-modal">
-            <a button (click)="login.toggle()" class="btn-modal-style" href="#">
-              Entrar
-          </a>
-        </div>
-    </app-modal>
-</div>
-
-<div class="Popup Cadastrar">
-    <app-modal #register>
-        <div>
-            <h1>Crie sua conta no Arbenebe!</h1>
-            <input type="text" placeholder="Nome" name="Nome" required>
-            <input type="text" placeholder="Email" name="Email" required>
-            <input type="password" placeholder="Senha" name="Senha" required>
-        </div>
-        <div class="terms">
-            <input type="checkbox" id="terms" required>
-            <label for="terms">Aceitar termos de uso</label>
-        </div>
-        <div class="btn-modal">
-            <a button (click)="register.toggle()" class="btn-modal-style">
-            Cadastrar</a>
-        </div>
-    </app-modal>
-</div>
-
+</body>
 
 </html>

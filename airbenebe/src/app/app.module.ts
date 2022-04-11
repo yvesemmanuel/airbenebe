@@ -7,10 +7,6 @@ import { AppComponent } from './app.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button'
 
-import {ModalModule} from './modal/modal.module';
-
-import {MatFormField} from '@angular/material/form-field'
-
 @NgModule({
   declarations: [
     AppComponent
@@ -19,8 +15,7 @@ import {MatFormField} from '@angular/material/form-field'
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
-    MatButtonModule,
-    ModalModule
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
