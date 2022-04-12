@@ -1,20 +1,25 @@
-<form action="#" method="post">
+<body>
+    <div class="main-container">
 
-    <div class="container">
-        <label for="username"><b>Login</b></label>
-        <input type="text" placeholder="Login do Usuário" name="username" required>
+        <form action="#" method="post">
 
-        <label for="psw"><b>Senha</b></label>
-        <input type="password" placeholder="Senha do Usuário" name="psw" required>
+            <div class="container">
+                <label for="username"><b>Email</b></label>
+                <input type="text" placeholder="Email do Usuário" name="username" required>
 
-        <button type="submit">Login</button>
-        <label>
-        <input type="checkbox" checked="checked" name="remember"> Lembrar de mim
-      </label>
+                <label for="password"><b>Senha</b></label>
+                <input type="password" placeholder="Senha do Usuário" name="password" required>
+
+                <button type="submit">Entrar</button>
+                <label>
+                <input type="checkbox" checked="checked" name="remember">Lembrar de mim
+              </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <a routerLink="/landing-component"><button type="button" class="cancelbtn">Voltar</button></a>
+                <span class="password">Esqueci minha <a href="#">senha?</a></span>
+            </div>
+        </form>
     </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <span class="password">Esqueci minha <a href="#">senha?</a></span>
-    </div>
-</form>
+</body>
