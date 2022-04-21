@@ -1,2 +1,49 @@
-<router-outlet>
-</router-outlet>
+<mat-toolbar class="header" fxLayout="row" fxLayoutAlign="space-between center">
+    <img class="logo" src="assets/logo/logo.png" alt="Airbenebe logo" routerLink="/" fxShow="false" fxShow.gt-md>
+    <img class="logo" src="assets/logo/icon.png" alt="Airbenebe icon" routerLink="/" fxHide="false" fxHide.gt-md>
+
+    <div *ngIf="isLogged" class="nav-options" fxLayoutGap="50px" fxShow="false" fxShow.gt-sm>
+        <span class="nav-btn" routerLink="">Alugue um imóvel</span>
+        <span class="nav-btn" routerLink="">Hospede seu imóvel</span>
+        <span class="nav-btn" routerLink="">Meus aluguéis</span>
+        <span class="nav-btn" routerLink="">Meus imóveis</span>
+    </div>
+
+    <div *ngIf="!isLogged" class="user-options" fxLayoutGap="15px" fxShow="false" fxShow.gt-sm>
+        <button mat-raised-button class="user-btn" routerLink="/login">Entrar</button>
+        <button mat-raised-button class="user-btn" routerLink="/register">Cadastrar</button>
+    </div>
+
+    <button *ngIf="!isLogged" mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <button *ngIf="isLogged" mat-raised-button class="logged-menu" [matMenuTriggerFor]="menu">
+        <div fxLayoutGap="6px" fxLayoutAlign="center center">
+            <mat-icon>menu</mat-icon>
+            <mat-icon class="account-icon">account_circle</mat-icon>
+        </div>
+    </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu" class="menu">
+    <div *ngIf="!isLogged">
+        <button mat-menu-item routerLink="/login">Entrar</button>
+        <button mat-menu-item routerLink="/register">Cadastrar</button>
+    </div>
+
+    <div *ngIf="isLogged">
+        <button mat-menu-item routerLink="">Notificações</button>
+        <div fxHide="false" fxHide.gt-sm>
+            <button mat-menu-item routerLink="">Meus aluguéis</button>
+            <button mat-menu-item routerLink="">Meus imóveis</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item routerLink="">Alugue um imóvel</button>
+            <button mat-menu-item routerLink="">Hospede seu imóvel</button>
+        </div>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLink="">Sair</button>
+    </div>
+</mat-menu>
+
+<router-outlet></router-outlet>

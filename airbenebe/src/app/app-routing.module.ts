@@ -4,7 +4,20 @@ import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-const routes: Routes = [{path: '', component: LandingComponent}, {path: 'landing-component', component: LandingComponent}, { path: 'login-component', component: LoginComponent }, { path: 'register-component', component: RegisterComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: LandingComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
