@@ -6,14 +6,18 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'airbenebe';
   isLogged: boolean = false;
-  hideNav: boolean = false;
+  hideHeader: boolean = false;
 
   constructor(private router: Router) {
-    router.events.subscribe(value => {
-      this.hideNav = router.url == '/login' || router.url == '/register';
+    this.router.events.subscribe(routerEvent => {
+      if (routerEvent instanceof NavigationEnd) {
+        this.hideHeader = this.router.url == '/login' || this.router.url == '/register';
+        console.log(this.router.url);
+      }
     });
   }
 }
