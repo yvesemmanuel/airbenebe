@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "name": "JV",
+      "email": "mlkloco@cin.ufpe.br",
+      "password": "1234$",
+      "id": 1
+    },
+    {
+      "name": "JV",
+      "email": "mlkloco@cin.ufpe.br",
+      "password": "1234$",
+      "id": 2
+    },
+    {
+      "name": "JV",
+      "email": "mlkloco@cin.ufpe.br",
+      "password": "1234$",
+      "id": 3
+    },
+    {
+      "name": "JV",
+      "email": "mlkloco@cin.ufpe.br",
+      "password": "1234$",
+      "id": 4
+    },
+    {
+      "name": "JV",
+      "email": "mlkloco@cin.ufpe.br",
+      "password": "1234$",
+      "id": 5
+    },
+    {
+      "name": "JV",
+      "email": "mlkloco@cin.ufpe.br",
+      "password": "1234$",
+      "id": 6
+    },
+    {
+      "name": "JV",
+      "email": "mlkloco@cin.ufpe.br",
+      "password": "1234$",
+      "id": 7
+    }
+  ]
+}
