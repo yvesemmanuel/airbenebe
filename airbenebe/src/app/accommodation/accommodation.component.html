@@ -1,4 +1,4 @@
-<div class="accomodation-container" fxLayoutAlign="center center">
+<div class="accomodation-body" fxLayoutAlign="center center">
     <mat-card class="accomodation-card">
         <mat-card-title class="title">{{ accommodation.title }}</mat-card-title>
         <mat-card-subtitle> 
@@ -20,7 +20,6 @@
                 {{ accommodation.bathrooms > 1 ? accommodation.bathrooms + ' banheiros' :
                 accommodation.bathrooms + ' banheiro' }}
             </span>
-            
         </mat-card-subtitle>
         <mat-card-content fxLayout.gt-sm="row" fxLayoutGap.gt-sm="40px">
             <div class="accommodation-info">

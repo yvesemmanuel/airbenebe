@@ -27,83 +27,73 @@
     font-feature-settings: 'liga';
 }
 
-.accomodation-body {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.payment-body {
     height: 90vh;
 }
 
-.accomodation-card {
-    min-width: 220px;
-    max-width: 1200px;
-    margin: 20px;
-}
-
-.mat-divider {
-    padding-bottom: 5px;
+.payment-container {
+    margin: 0px 10px;
 }
 
 .title {
-    font-size: 27px;
+    font-size: 40px;
+    height: 40px;
     font-weight: bold;
+    text-align: center;
 }
 
-.address {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 510;
-    margin-bottom: 10px;
-}
-
-.description {
-    margin-right: 10px;
-}
-
-.renting {
-    min-width: 30%;
-}
-
-.renting .mat-card {
-    padding: 25px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.price {
-    font-family: 'Roboto', sans-serif;
-}
-
-.price span {
-    font-size: 0.8em;
-}
-
-.date-label {
-    font-size: 1.2em;
-    padding-top: 10px;
-}
-
-.guests span {
-    font-family: 'Roboto', sans-serif;
-    font-size: 25px;
-}
-
-.renting-button {
+.payment-button {
     background-color: #4C76E1;
     color: white;
     border-radius: 5px;
-    font-weight: 550;
+    font-weight: 510;
     font-size: 20px;
     margin-top: 5px;
     padding: 5px 0px;
 }
 
-.guests-label {
+.rental-card {
+    max-width: 600px;
+    padding: 20px;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.mat-divider {
+    padding-bottom: 10px;
+}
+
+.rental-info span {
+    font-family: 'Roboto', sans-serif;
     font-size: 1.2em;
 }
 
-.total {
-    margin-top: 15px;
+.price-info span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+}
+
+mat-form-field {
+    width: 100%;
 }
 
 .total span {
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 1.2em;
+    font-weight: bold;
 }
-

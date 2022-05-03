@@ -1,15 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Accommodation } from '../Accommodation';
+import { Rental } from '../Rental';
 
 @Component({
-  selector: 'app-accommodation',
-  templateUrl: './accommodation.component.html',
-  styleUrls: ['./accommodation.component.css']
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.css']
 })
-export class AccommodationComponent implements OnInit {
+export class PaymentComponent implements OnInit {
+
+  paymentForm = new FormGroup({
+    method: new FormControl('', [
+      Validators.required
+    ]),
+    card_number: new FormControl('', [
+      Validators.required
+    ]),
+    card_name: new FormControl('', [
+      Validators.required
+    ]),
+    expiry: new FormControl('', [
+      Validators.required
+    ]),
+    cvv: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(3)
+    ]),
+  });
 
   accommodation: Accommodation = {
     "id": 1,
@@ -26,29 +47,22 @@ export class AccommodationComponent implements OnInit {
     "bathrooms": 2,
     "price": 480
   }
-
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
-  });
-
-  guests = 0;
-
+  
+  nights = 2;
+  guests = 3;
+  start = new Date(2022, 4, 4);
+  end = new Date(2022, 4, 6)
+  
   constructor() { }
 
   ngOnInit(): void {
   }
-  
+
   stringifyPrice(price: number) {
     return `R$ ${price.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
   }
 
-  plusGuests() {
-    this.guests++;
+  stringifyDate(date: Date | null) {
+    return date != null ? date.toLocaleDateString("pt-Br") : "aaa";
   }
-
-  minusGuests() {
-    this.guests--;
-  }
-
 }

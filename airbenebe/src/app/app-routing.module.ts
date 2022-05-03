@@ -4,6 +4,7 @@ import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,11 @@ const routes: Routes = [
   {
     path: 'accommodation',
     component: AccommodationComponent
-  }
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent
+  },
 ];
 
 @NgModule({

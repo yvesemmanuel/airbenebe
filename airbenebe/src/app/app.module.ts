@@ -18,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -50,6 +52,8 @@ import { PaymentComponent } from './payment/payment.component';
     MatDividerModule,
     MatCardModule,
     MatGridListModule,
+    MatInputModule,
+    MatSelectModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
