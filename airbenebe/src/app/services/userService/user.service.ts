@@ -1,23 +1,39 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/interfaces/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from 'src/app/interfaces/User';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private serverUrl = "http://localhost:3000";
 
-  private userUrl = "http://localhost:3000/users";
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-  addUser(user: User) {
-    return this.http.post<User>(this.userUrl, user).toPromise().then(res => console.log(res)).catch(error => window.alert('Deu erro!!'));
+  register(user: User): Observable<User> {
+    return this.http.post<User>(this.serverUrl + "/user", user, httpOptions).pipe(map(
+      res => {
+        return res;
+      }
+    ));
   }
 
-  getUsers(){
-    return this.http.get<User>(this.userUrl).toPromise().then(res => console.log(res));
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.serverUrl + "/users").pipe(map(
+      res => {
+        return res;
+      }
+    ));;
   }
 
 }
