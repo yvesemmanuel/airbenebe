@@ -1,4 +1,4 @@
-<div class="accomodation-body" fxLayoutAlign="center center">
+<div *ngIf="accommodation" class="accomodation-body" fxLayoutAlign="center center">
     <mat-card class="accomodation-card">
         <mat-card-title class="title">{{ accommodation.title }}</mat-card-title>
         <mat-card-subtitle> 
@@ -44,9 +44,6 @@
                                 <input matStartDate formControlName="start" placeholder="Início" readonly required>
                                 <input matEndDate formControlName="end" placeholder="Fim" readonly required>
                             </mat-date-range-input>
-                            <mat-error>
-                                Por favor, selecione uma data.
-                            </mat-error>
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-date-range-picker #picker>
                                 <mat-date-range-picker-actions>
@@ -57,7 +54,7 @@
                         </mat-form-field>
                         <span class="guests-label">Hóspedes</span>
                         <div class="guests" fxLayoutAlign="space-between center">
-                            <button mat-icon-button [disabled]="guests == 0" (click)="minusGuests()">
+                            <button mat-icon-button [disabled]="guests == 1" (click)="minusGuests()">
                                 <mat-icon>remove_circle_outline</mat-icon>
                             </button>
                             <span>{{ guests }}</span>
@@ -65,15 +62,18 @@
                                 <mat-icon>add_circle_outline</mat-icon>
                             </button>
                         </div>
-                        <button mat-raised-button class="renting-button" [disabled]="false">
+                        <button mat-raised-button class="renting-button" [disabled]="false" (click)="this.toPayment()">
                             Reservar
                         </button>
-                        <div class="total" *ngIf="range.valid" fxLayoutAlign="space-between center">
+                        <div class="total" *ngIf="this.validDate()" fxLayoutAlign="space-between center">
                             <span>Total</span>
                             <span>
                                 {{ this.stringifyPrice(accommodation.price * (range.value['end'] - range.value['start'])/86400000) }}
                             </span>
                         </div>
+                        <p class="error" *ngIf="dateInvalid && !this.validDate()">
+                            {{getErrorMessage()}}
+                        </p>
                     </mat-card-content>
                 </mat-card>
             </div>

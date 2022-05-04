@@ -9,7 +9,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
+import { AccommodationDetailComponent } from './accommodation-detail/accommodation-detail.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
+import { PaymentComponent } from './payment/payment.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,9 +26,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgxMaskModule } from 'ngx-mask';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { PaymentComponent } from './payment/payment.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PaymentComponent } from './payment/payment.component';
     LandingComponent,
     RegisterComponent,
     AccommodationComponent,
-    PaymentComponent
+    PaymentComponent,
+    AccommodationDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { PaymentComponent } from './payment/payment.component';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     MatDatepickerModule,

@@ -2,7 +2,7 @@ export interface Accommodation {
     id: number;
     title: string;
     description: string;
-    type: string
+    type: string;
     state: string;
     city: string;
     street: string;
@@ -11,5 +11,6 @@ export interface Accommodation {
     capacity: number;
     rooms: number;
     bathrooms: number;
+    image: string[];
     price: number;
 }

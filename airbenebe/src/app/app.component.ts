@@ -16,7 +16,6 @@ export class AppComponent {
     this.router.events.subscribe(routerEvent => {
       if (routerEvent instanceof NavigationEnd) {
         this.hideHeader = this.router.url == '/login' || this.router.url == '/register';
-        console.log(this.router.url);
       }
     });
   }
