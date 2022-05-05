@@ -51,6 +51,7 @@ export class PaymentComponent implements OnInit {
   constructor(
     private accommodationService: AccommodationService, 
     private rentalService: RentalService,
+    private router: Router,
     private route: ActivatedRoute
     ) { }
 
@@ -91,7 +92,9 @@ export class PaymentComponent implements OnInit {
 
       this.rentalService.addRental(rental).subscribe({
         error: err => console.log(err)
-      });
+      })
+      
+      this.router.navigate(['']);
     }
   }
 

@@ -11,6 +11,6 @@ export interface Accommodation {
     capacity: number;
     rooms: number;
     bathrooms: number;
-    image: string[];
+    images: string[];
     price: number;
 }

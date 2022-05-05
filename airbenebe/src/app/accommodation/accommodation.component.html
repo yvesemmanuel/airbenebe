@@ -1,5 +1,16 @@
 <div *ngIf="accommodation" fxLayout="column" class="accomodation-body" fxLayoutAlign="center center">
     <mat-card class="accomodation-card">
+        <ngb-carousel mat-card-image class="carousel-images">
+            <ng-template *ngFor="let img of accommodation.images" ngbSlide>
+              <div class="picsum-img-wrapper">
+                <img [src]="img" alt="Random first slide">
+              </div>
+              <div class="carousel-caption">
+                <h3>teste</h3>
+                <p>testado</p>
+              </div>
+            </ng-template>
+        </ngb-carousel>
         <mat-card-title class="title">{{ accommodation.title }}</mat-card-title>
         <mat-card-subtitle> 
             <span>
