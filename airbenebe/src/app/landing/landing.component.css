@@ -10,20 +10,20 @@ body {
     background-size: cover;
 }
 
-.container {
+.message {
     padding-top: 25vh;
     padding-bottom: 25vh;
     padding-left: 50px;
     max-width: 50%;
 }
 
-.container h1 {
+.message h1 {
     font-size: 45px;
     color: #4C76E1;
     font-weight: 500;
     line-height: 45px;
 }
 
-.container p {
+.message p {
     font-size: 15px;
 }
