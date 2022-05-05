@@ -25,6 +25,13 @@ export class RentalService {
     return this.http.get<Rental>(`${this.rentalUrl}/${id}`);
   }
 
+  getAccomodationRentals(id_accomodation: number): Observable<Rental[]> {
+    return this.http.get<Rental[]>(this.rentalUrl, {
+      headers: { 'Content-Type': 'application/json' },
+      params: {"id_accommodation": id_accomodation}
+    });
+  }
+
   addRental(rental: Rental): Observable<Rental> {
     return this.http.post<Rental>(this.rentalUrl, rental, this.httpOptions);
   }

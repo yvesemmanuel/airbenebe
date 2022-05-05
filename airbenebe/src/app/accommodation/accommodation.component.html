@@ -1,4 +1,4 @@
-<div *ngIf="accommodation" class="accomodation-body" fxLayoutAlign="center center">
+<div *ngIf="accommodation" fxLayout="column" class="accomodation-body" fxLayoutAlign="center center">
     <mat-card class="accomodation-card">
         <mat-card-title class="title">{{ accommodation.title }}</mat-card-title>
         <mat-card-subtitle> 
@@ -40,18 +40,22 @@
                         <span class="date-label">Período de aluguel</span>
                         <mat-form-field appearance="outline">
                             <mat-label>Check-in - Check-out</mat-label>
-                            <mat-date-range-input [formGroup]="range" [rangePicker]="picker" required>
-                                <input matStartDate formControlName="start" placeholder="Início" readonly required>
+                            <mat-date-range-input 
+                            [formGroup]="range" 
+                            [rangePicker]="picker" 
+                            [dateFilter]="myFilter" 
+                            [min]="minDate"
+                            [max]="maxDate"
+                            required>
+                                <input matStartDate formControlName="start" placeholder="Início" (dateChange)="startDateChanged($event)" readonly required>
                                 <input matEndDate formControlName="end" placeholder="Fim" readonly required>
                             </mat-date-range-input>
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-date-range-picker #picker>
-                                <mat-date-range-picker-actions>
-                                    <button mat-button (click)="range.reset()" matDateRangePickerCancel>Limpar</button>
-                                    <button mat-raised-button color="primary" matDateRangePickerApply>Confirmar</button>
-                                </mat-date-range-picker-actions>
-                            </mat-date-range-picker>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
                         </mat-form-field>
+
+                        <button mat-stroked-button class="clear-button" (click)="clearSelection()">Limpar</button>
+                        
                         <span class="guests-label">Hóspedes</span>
                         <div class="guests" fxLayoutAlign="space-between center">
                             <button mat-icon-button [disabled]="guests == 1" (click)="minusGuests()">

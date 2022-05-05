@@ -78,6 +78,14 @@
     padding-top: 10px;
 }
 
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+.clear-button {
+    align-self: flex-end;
+    width: 80px;
+}
 .error {
     color: red;
     font-size: 12px;

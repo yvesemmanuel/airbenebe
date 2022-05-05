@@ -21,7 +21,6 @@ export class PaymentComponent implements OnInit {
   nights!: number;
   guests!: number;
   paymentValid: boolean = true;
-  nextId: number = 0;
 
 
   paymentForm = new FormGroup({
@@ -78,10 +77,9 @@ export class PaymentComponent implements OnInit {
 
   onSubmit() {
     if (this.paymentForm.valid) {
-      this.genId();
       const rental: Rental = {
-        "id": this.nextId,
-        "id_user": 1,
+        "id": this.genId(),
+        "id_user": 2,
         "id_accommodation": this.accommodation.id,
         "guests": this.guests,
         "price": this.accommodation.price * this.nights,
@@ -98,11 +96,13 @@ export class PaymentComponent implements OnInit {
   }
 
   genId() {
+    let nextId = 0; 
     this.rentalService.getRentals().subscribe({
       next: (rentals: Rental[]) => {
-        this.nextId = rentals.length > 0 ? Math.max(...rentals.map(rental => rental.id)) + 1 : 1;
+        nextId = rentals.length > 0 ? Math.max(...rentals.map(rental => rental.id)) + 1 : 1;
       }
     })
+    return nextId
   }
 
   stringifyPrice(price: number): string {

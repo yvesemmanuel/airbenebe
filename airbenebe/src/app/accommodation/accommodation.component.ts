@@ -5,6 +5,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Accommodation } from '../Accommodation';
 import { AccommodationService } from '../services/accommodationService/accommodation.service';
 
+import { Rental } from '../Rental';
+import { RentalService } from '../services/rentalService/rental.service';
+
 @Component({
   selector: 'app-accommodation',
   templateUrl: './accommodation.component.html',
@@ -12,7 +15,8 @@ import { AccommodationService } from '../services/accommodationService/accommoda
 })
 export class AccommodationComponent implements OnInit {
 
-  accommodation?: Accommodation;
+  accommodation!: Accommodation;
+  rentals: Rental[] = [];
   guests: number = 1;
   dateInvalid: boolean = false;
   
@@ -21,9 +25,17 @@ export class AccommodationComponent implements OnInit {
     end: new FormControl(),
   });
 
+  minDate: Date = new Date();
+  maxDate: Date = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+
+  myFilter = (d: Date | null): boolean => {
+    const date = (d || new Date());
+    return this.enableDate(date);
+  };
 
   constructor(
     private accommodationService: AccommodationService, 
+    private rentalService: RentalService,
     private router: Router, 
     private route: ActivatedRoute) { }
 
@@ -31,15 +43,21 @@ export class AccommodationComponent implements OnInit {
     this.getAccommodation();
   }
   
-  getAccommodation() {
+  getAccommodation(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    this.accommodationService.getAccommodation(id)
-    .subscribe(
-      (accommodation) => (this.accommodation = accommodation)
-      );
+    this.accommodationService.getAccommodation(id).subscribe(accommodation => {
+      this.accommodation = accommodation;
+      this.getAccomodationRentals(accommodation.id);
+    });
   }
 
-  toPayment() {
+  getAccomodationRentals(id: number): void {
+    this.rentalService.getAccomodationRentals(id).subscribe(rentals => {
+      this.rentals = rentals;
+    });
+  }
+
+  toPayment(): void {
     if (this.validDate()) {
       this.router.navigate(['payment'], {relativeTo: this.route, queryParams: {
         guests: this.guests,
@@ -51,27 +69,59 @@ export class AccommodationComponent implements OnInit {
     }
   }
 
-  getErrorMessage() {
-    if ((this.range.valid)) {
-      return "As datas devem ser diferentes."
+  getErrorMessage(): string {
+    return (this.range.valid) ? "As datas devem ser diferentes." : "Por favor, selecione as datas.";
+  }
+
+  enableDate(date: Date): boolean {
+    for (let rental of this.rentals) {
+      const start = new Date(rental.start_date);
+      const end = new Date(rental.end_date);
+      if ((start <= date) && (date <= end)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  validDate(): boolean {
+    return ((this.range.valid) && (this.differentDates(this.range.value["end"], this.range.value["start"])));
+  }
+
+  differentDates(d1: Date, d2: Date): boolean {
+    return d1.setHours(0, 0, 0) != d2.setHours(0, 0, 0)
+  }
+
+  startDateChanged(e: any) {
+    const date = e.value;
+    if (date != null) {
+      let min = this.maxDate;
+      for (let rental of this.rentals) {
+        const start = new Date(rental.start_date);
+        if ((date < start) && (start < min)) {
+          min = start
+        }
+      }
+      this.maxDate = min;
     } else {
-      return "Por favor, selecione as datas."
+      this.maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
     }
   }
 
-  validDate() {
-    return ((this.range.valid) && (this.range.value["end"].toJSON() != this.range.value["start"].toJSON()));
+  clearSelection() {
+    this.range.reset();
+    this.maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
   }
 
   stringifyPrice(price: number): string {
     return `R$ ${price.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
   }
 
-  plusGuests() {
+  plusGuests(): void {
     this.guests++;
   }
 
-  minusGuests() {
+  minusGuests(): void {
     this.guests--;
   }
 
