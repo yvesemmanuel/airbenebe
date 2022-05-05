@@ -4,7 +4,7 @@
 
     <div *ngIf="isLogged" class="nav-options" fxLayoutGap="50px" fxShow="false" fxShow.gt-sm>
         <span class="nav-btn" routerLink="">Alugue um imóvel</span>
-        <span class="nav-btn" routerLink="">Hospede seu imóvel</span>
+        <span class="nav-btn" routerLink="add-listing">Hospede seu imóvel</span>
         <span class="nav-btn" routerLink="">Meus aluguéis</span>
         <span class="nav-btn" routerLink="">Meus imóveis</span>
     </div>
@@ -38,10 +38,10 @@
             <button mat-menu-item routerLink="">Meus imóveis</button>
             <mat-divider></mat-divider>
             <button mat-menu-item routerLink="">Alugue um imóvel</button>
-            <button mat-menu-item routerLink="">Hospede seu imóvel</button>
+            <button mat-menu-item routerLink="/add-listing">Hospede seu imóvel</button>
         </div>
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="">Sair</button>
+        <button mat-menu-item (click)="deslogar()">Sair</button>
     </div>
 </mat-menu>
 

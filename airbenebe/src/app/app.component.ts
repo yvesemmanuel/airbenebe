@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 
 export class AppComponent {
   title = 'airbenebe';
-  isLogged: boolean = false;
+  isLogged: boolean = true;
   hideHeader: boolean = false;
 
   constructor(private router: Router) {
@@ -20,4 +20,10 @@ export class AppComponent {
       }
     });
   }
+
+  deslogar (){
+    this.isLogged = false;
+    
+  }
+
 }
