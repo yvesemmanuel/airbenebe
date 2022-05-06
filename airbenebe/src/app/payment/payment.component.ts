@@ -34,7 +34,7 @@ export class PaymentComponent implements OnInit {
     ]),
     card_name: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z]*')
+      Validators.pattern('^([a-zA-Z]+\\s)*[a-zA-Z]+$')
     ]),
     expiry: new FormControl('', [
       Validators.required,

@@ -16,7 +16,7 @@ import { RentalService } from '../services/rentalService/rental.service';
 export class AccommodationComponent implements OnInit {
 
   accommodation!: Accommodation;
-  rentals: Rental[] = [];
+  accRentals: Rental[] = [];
   guests: number = 1;
   dateInvalid: boolean = false;
   
@@ -53,7 +53,7 @@ export class AccommodationComponent implements OnInit {
 
   getAccomodationRentals(id: number): void {
     this.rentalService.getAccomodationRentals(id).subscribe(rentals => {
-      this.rentals = rentals;
+      this.accRentals = rentals;
     });
   }
 
@@ -70,11 +70,11 @@ export class AccommodationComponent implements OnInit {
   }
 
   getErrorMessage(): string {
-    return (this.range.valid) ? "As datas devem ser diferentes." : "Por favor, selecione as datas.";
+    return (this.range.valid) ? "As datas devem ser diferentes." : "O período deve ser selecionado.";
   }
 
   enableDate(date: Date): boolean {
-    for (let rental of this.rentals) {
+    for (let rental of this.accRentals) {
       const start = new Date(rental.start_date);
       const end = new Date(rental.end_date);
       if ((start <= date) && (date <= end)) {
@@ -96,7 +96,7 @@ export class AccommodationComponent implements OnInit {
     const date = e.value;
     if (date != null) {
       let min = this.maxDate;
-      for (let rental of this.rentals) {
+      for (let rental of this.accRentals) {
         const start = new Date(rental.start_date);
         if ((date < start) && (start < min)) {
           min = start

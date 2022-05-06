@@ -28,7 +28,9 @@
 }
 
 .accomodation-body {
-    height: 90vh;
+    height: auto;
+    margin-top: 20px;
+    padding-bottom: 30px;
 }
 
 .accomodation-card {
@@ -42,7 +44,7 @@
 }
 
 ::ng-deep .mat-card-image img {
-    height: 300px;
+    height: 500px;
     width: auto;
     object-fit: scale-down;
 }
@@ -131,16 +133,9 @@
     font-weight: 500;
 }
 
-@media only screen and (max-width: 959px) {
-    .accomodation-body {
-        height: auto;
-        margin-top: 20px;
-        padding-bottom: 30px;
-    }
-}
-
-@media only screen and (max-width: 599px){
+@media only screen and (max-width: 959px){
     ::ng-deep .mat-card-image img {
+        height: 300px;
         object-fit: cover;
     }
 }

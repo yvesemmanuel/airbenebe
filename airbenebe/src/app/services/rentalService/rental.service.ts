@@ -32,11 +32,22 @@ export class RentalService {
     });
   }
 
+  getUserRentals(id_user: number): Observable<Rental[]> {
+    return this.http.get<Rental[]>(this.rentalUrl, {
+      headers: { 'Content-Type': 'application/json' },
+      params: {"id_user": id_user}
+    });
+  }
+
   addRental(rental: Rental): Observable<Rental> {
     return this.http.post<Rental>(this.rentalUrl, rental, this.httpOptions);
   }
 
-  deleteRental(id: number): Observable<Rental> {
-    return this.http.post<Rental>(`${this.rentalUrl}/${id}`, this.httpOptions);
+  updateRental(rental: Rental): Observable<Rental> {
+    return this.http.post<Rental>(this.rentalUrl, rental, this.httpOptions);
+  }
+
+  deleteRental(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.rentalUrl}/${id}`, this.httpOptions);
   }
 }

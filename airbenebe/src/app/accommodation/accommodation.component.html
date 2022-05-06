@@ -5,10 +5,6 @@
               <div class="picsum-img-wrapper">
                 <img [src]="img" alt="Random first slide">
               </div>
-              <div class="carousel-caption">
-                <h3>teste</h3>
-                <p>testado</p>
-              </div>
             </ng-template>
         </ngb-carousel>
         <mat-card-title class="title">{{ accommodation.title }}</mat-card-title>
@@ -61,7 +57,7 @@
                                 <input matStartDate formControlName="start" placeholder="Início" (dateChange)="startDateChanged($event)" readonly required>
                                 <input matEndDate formControlName="end" placeholder="Fim" readonly required>
                             </mat-date-range-input>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker-toggle matSuffix [for]="picker" button-cy="calendar-toggle"></mat-datepicker-toggle>
                             <mat-date-range-picker #picker></mat-date-range-picker>
                         </mat-form-field>
 
@@ -69,24 +65,24 @@
                         
                         <span class="guests-label">Hóspedes</span>
                         <div class="guests" fxLayoutAlign="space-between center">
-                            <button mat-icon-button [disabled]="guests == 1" (click)="minusGuests()">
+                            <button mat-icon-button [disabled]="guests == 1" (click)="minusGuests()" button-cy="minus-guests">
                                 <mat-icon>remove_circle_outline</mat-icon>
                             </button>
                             <span>{{ guests }}</span>
-                            <button mat-icon-button [disabled]="guests == accommodation.capacity" (click)="plusGuests()">
+                            <button mat-icon-button [disabled]="guests == accommodation.capacity" (click)="plusGuests()" button-cy="plus-guests">
                                 <mat-icon>add_circle_outline</mat-icon>
                             </button>
                         </div>
-                        <button mat-raised-button class="renting-button" [disabled]="false" (click)="this.toPayment()">
+                        <button mat-raised-button class="renting-button" [disabled]="false" (click)="this.toPayment()" button-cy="renting">
                             Reservar
                         </button>
-                        <div class="total" *ngIf="this.validDate()" fxLayoutAlign="space-between center">
+                        <div class="total" *ngIf="this.validDate()" fxLayoutAlign="space-between center" data-cy="total">
                             <span>Total</span>
                             <span>
                                 {{ this.stringifyPrice(accommodation.price * (range.value['end'] - range.value['start'])/86400000) }}
                             </span>
                         </div>
-                        <p class="error" *ngIf="dateInvalid && !this.validDate()">
+                        <p class="error" *ngIf="dateInvalid && !this.validDate()" error-cy="invalid-date">
                             {{getErrorMessage()}}
                         </p>
                     </mat-card-content>
