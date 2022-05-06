@@ -1,7 +1,7 @@
-export interface Rental {
-    id: number;
-    id_user: number;
-    id_accommodation: number;
+class Rental {
+    id: string;
+    id_user: string;
+    id_accommodation: string;
     guests: number;
     price: number;
     nights: number;
@@ -9,3 +9,5 @@ export interface Rental {
     start_date: string;
     end_date: string;
 }
+
+export default Rental;
