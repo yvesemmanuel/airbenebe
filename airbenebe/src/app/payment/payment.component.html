@@ -1,0 +1,110 @@
+<div *ngIf="accommodation" class="payment-body" fxLayoutAlign="center center">
+    <div class="payment-container" fxLayout.lt-md="column" fxLayoutAlign.gt-sm=" start" fxLayoutGap="50px">
+        <div>
+            <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="10px">
+                <button mat-icon-button class="back-button" routerLink=".."><mat-icon>keyboard_arrow_left</mat-icon></button>
+                <p class="title" fxShow.gt-sm="false">Pagamento</p>
+            </div>
+            <mat-card class="rental-card">
+                <mat-card-content fxLayout="row" fxLayoutGap="20px">
+                    <img [src]="accommodation.images[0]">
+                    <div>
+                        <mat-card-title><b>{{ accommodation.title }}</b></mat-card-title>
+                        <mat-card-subtitle>{{ accommodation.city }}, {{ accommodation.state }}</mat-card-subtitle>
+                    </div>
+                </mat-card-content>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-card-content class="rental-info">
+                    <h2>Seu aluguel</h2>
+                    <p fxLayoutAlign="space-between">
+                        <span>Hóspedes:</span>
+                        <span>{{ guests }}</span>
+                    </p>
+                    <p fxLayoutAlign="space-between">
+                        <span>De:</span>
+                        <span>{{ this.stringifyDate(start) }}</span>
+                    </p>
+                    <p fxLayoutAlign="space-between">
+                        <span>Até:</span>
+                        <span>{{ this.stringifyDate(end) }}</span>
+                    </p>
+                </mat-card-content>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-card-content class="price-info">
+                    <h2>Informações de preço</h2>
+                    <p fxLayoutAlign="space-between">
+                        <span>{{ this.stringifyPrice(accommodation.price) }} x {{ nights > 1 ? nights + ' noites' : nights + ' noite' }}</span>
+                        <span>{{ this.stringifyPrice(accommodation.price * nights) }}</span>
+                    </p>
+                </mat-card-content>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-card-content class="total" fxLayoutAlign="space-between">
+                    <span>Total</span>
+                    <span>{{ this.stringifyPrice(accommodation.price * nights) }}</span>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <form [formGroup]="paymentForm" fxLayout="column" fxFlexAlign="stretch" (ngSubmit)="onSubmit()">
+            <p class="title" fxHide.lt-md="true" style="padding-bottom: 15px">Pagamento</p>
+            <mat-form-field appearance="outline">
+                <mat-label>Método de pagamento</mat-label>
+                <mat-select formControlName="method" input-cy="method">
+                    <mat-option>----Selecione----</mat-option>
+                    <mat-option value="crédito">Cartão de crédito</mat-option>
+                </mat-select>
+                <mat-error error-cy="null-method">
+                    Por favor, selecione o método de pagamento.
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Número do cartão</mat-label>
+                <input matInput type="text" formControlName="card_number" placeholder="0000 0000 0000 0000" mask="0000 0000 0000 0000" input-cy="number">
+                <mat-error *ngIf="((this.paymentForm.controls['card_number'].invalid) && (!paymentForm.controls['card_number'].hasError('required')))" error-cy="invalid-number">
+                    Por favor, digite um número válido.
+                </mat-error>
+                <mat-error *ngIf="paymentForm.controls['card_number'].hasError('required')" error-cy="null-number">
+                    Por favor, insira um número.
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Nome no cartão</mat-label>
+                <input matInput type="text" formControlName="card_name" placeholder="Fulano de Tal" input-cy="name">
+                <mat-error *ngIf="((this.paymentForm.controls['card_name'].invalid) && (!paymentForm.controls['card_name'].hasError('required')))" error-cy="invalid-name">
+                    Por favor, digite um nome válido.
+                </mat-error>
+                <mat-error *ngIf="paymentForm.controls['card_name'].hasError('required')" error-cy="null-name">
+                    Por favor, insira um nome.
+                </mat-error>
+            </mat-form-field>
+    
+            <table><tr>
+                <td><mat-form-field appearance="outline">
+                    <mat-label>Validade</mat-label>
+                    <input matInput formControlName="expiry" placeholder="MM/AA" mask="00/00" input-cy="expiry">
+                    <mat-error *ngIf="((this.paymentForm.controls['expiry'].invalid) && (!paymentForm.controls['expiry'].hasError('required')))" error-cy="invalid-expiry">
+                        Por favor, digite um data válida.
+                    </mat-error>
+                    <mat-error *ngIf="paymentForm.controls['expiry'].hasError('required')" error-cy="null-expiry" >
+                        Por favor, insira uma data.
+                    </mat-error>
+                </mat-form-field></td>
+                <td><mat-form-field appearance="outline">
+                    <mat-label>CVV</mat-label>
+                    <input matInput type="text" formControlName="cvv" maxlength="3" placeholder="123" input-cy="cvv">
+                    <mat-error *ngIf="((this.paymentForm.controls['cvv'].invalid) && (!paymentForm.controls['cvv'].hasError('required')))" error-cy="invalid-cvv">
+                        Por favor, digite um CVV válido.
+                    </mat-error>
+                    <mat-error *ngIf="paymentForm.controls['cvv'].hasError('required')" error-cy="null-cvv">
+                        Por favor, insira um CVV.
+                    </mat-error>
+                </mat-form-field></td>
+            </tr></table>
+    
+            <button mat-raised-button class="payment-button" button-cy="payment">
+                Confirmar e pagar
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.accomodation-body {
+    height: auto;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+.accomodation-card {
+    min-width: 220px;
+    max-width: 1200px;
+    margin: 20px;
+}   
+
+.carousel-images {
+    background-color: #101010;
+}
+
+::ng-deep .mat-card-image img {
+    height: 500px;
+    width: auto;
+    object-fit: scale-down;
+}
+
+.mat-divider {
+    padding-bottom: 5px;
+}
+
+.title {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.address {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 510;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-right: 10px;
+}
+
+.renting {
+    min-width: 30%;
+}
+
+.renting .mat-card {
+    padding: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.price {
+    font-family: 'Roboto', sans-serif;
+}
+
+.price span {
+    font-size: 0.8em;
+}
+
+.date-label {
+    font-size: 1.2em;
+    padding-top: 10px;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+.clear-button {
+    align-self: flex-end;
+    width: 80px;
+}
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
+.guests span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+
+.renting-button {
+    background-color: #4C76E1;
+    color: white;
+    border-radius: 5px;
+    font-weight: 550;
+    font-size: 20px;
+    margin-top: 5px;
+    padding: 5px 0px;
+}
+
+.guests-label {
+    font-size: 1.2em;
+}
+
+.total {
+    margin-top: 15px;
+}
+
+.total span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 959px){
+    ::ng-deep .mat-card-image img {
+        height: 300px;
+        object-fit: cover;
+    }
+}
