@@ -6,7 +6,6 @@ const routes = Router();
 
 const userController = new UserController();
 
-routes.get('/users', userController.index);
 routes.get('/users/:id', userController.show);
 routes.post('/users', userController.create);
 routes.patch('/users/:id', userController.update);

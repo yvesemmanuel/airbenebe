@@ -1,6 +1,4 @@
-import { Request, Response } from 'express';
-
-import UserRepository from '../repositories/UserRepository';
+import { Request, Response} from 'express';
 
 import CreateUserService from '../services/user/CreateUserService';
 import ShowUserService from '../services/user/ShowUserService';
@@ -70,14 +68,6 @@ class UserController {
 
         return response.status(200).json(data.data);
     };
-
-    // Apagar
-    public async index(request: Request, response: Response): Promise<Response> {
-        const userRepository = new UserRepository().getInstance();
-
-        return response.json(userRepository.findAll());
-    };
-    // Apagar
 
     public async login(request: Request, response: Response): Promise<Response> {
         const { email, password } = request.body;

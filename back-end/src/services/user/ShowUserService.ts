@@ -16,7 +16,7 @@ class ShowUserService {
         if (foundUser) {
             return {
                 error: false,
-                message: "User founded.",
+                message: "User found.",
                 data: foundUser,
             };
         }
