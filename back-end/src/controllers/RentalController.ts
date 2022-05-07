@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
 
-import RentalRepository from '../repositories/RentalRepository';
-
 import CreateRentalService from '../services/rental/CreateRentalService';
 import ShowRentalService from '../services/rental/ShowRentalService';
 import DeleteRentalService from '../services/rental/DeleteRentalService';
 import UpdateRentalService from '../services/rental/UpdateRentalService';
+import UserRentalService from '../services/rental/UserRentalService';
 
 class RentalController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -81,10 +80,14 @@ class RentalController {
         return response.status(200).json(data.data);
     };
 
-    public async index(request: Request, response: Response): Promise<Response> {
-        const rentalRepository = new RentalRepository().getInstance();
+    public async userRentals(request: Request, response: Response): Promise<Response> {
+        const id_user = request.query.id_user as string;
+        
+        const userRental = new UserRentalService();
 
-        return response.json(rentalRepository.findAll());
+        const data = userRental.execute(id_user);
+
+        return response.status(200).json(data.data);
     };
 };
 

@@ -1,5 +1,6 @@
-export interface Accommodation {
+class Accommodation {
     id: string;
+    id_user: string;
     title: string;
     description: string;
     type: string;
@@ -14,3 +15,5 @@ export interface Accommodation {
     images: string[];
     price: number;
 }
+
+export default Accommodation;

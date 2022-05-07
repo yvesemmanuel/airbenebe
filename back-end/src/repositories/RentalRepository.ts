@@ -64,7 +64,7 @@ class RentalRepository {
     }
 
     public delete(id: string): void {
-        const filtered = this.rentals.filter(rental => rental.id !== id);
+        const filtered = this.rentals.filter(rental => rental.id != id);
         this.rentals = filtered;
     };
 
@@ -79,6 +79,11 @@ class RentalRepository {
         }
 
         return undefined;
+    }
+
+    public userRentals(id_user: string): Rental[] {
+        const foundRentals = this.rentals.filter(rental => rental.id_user == id_user);
+        return foundRentals;
     }
 
     public findAll(): Rental[] {

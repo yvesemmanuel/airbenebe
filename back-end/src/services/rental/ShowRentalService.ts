@@ -16,7 +16,7 @@ class ShowRentalService {
         if (foundRental) {
             return {
                 error: false,
-                message: "Rental founded.",
+                message: "Rental found.",
                 data: foundRental,
             };
         }
