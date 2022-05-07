@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
+import { UploadImagesComponent } from './upload_images/upload_images.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,6 +21,13 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     LandingComponent,
     RegisterComponent,
-    AddListingComponent
+    AddListingComponent,
+    UploadImagesComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressBarModule,
+    MatListModule,
+    MatSelectModule,
+    HttpClientModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
