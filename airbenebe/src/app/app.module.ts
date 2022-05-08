@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
-import { UploadImagesComponent } from './upload_images/upload_images.component';
+
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -35,8 +35,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     LandingComponent,
     RegisterComponent,
-    AddListingComponent,
-    UploadImagesComponent
+    AddListingComponent
   ],
   imports: [
     BrowserModule,
