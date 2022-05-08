@@ -13,6 +13,18 @@ type CreateRentalType = {
     end_date: string;
 }
 
+type QueryRentalType = {
+    id_user: string;
+    id_accommodation: string;
+    guests: string;
+    price: string;
+    nights: string;
+    purchase_date: string;
+    start_date: string;
+    end_date: string;
+    [key: string]: string;
+};
+
 class RentalRepository {
     private rentals: Rental[] = [];
     private static instance: RentalRepository;
@@ -86,8 +98,9 @@ class RentalRepository {
         return foundRentals;
     }
 
-    public findAll(): Rental[] {
-        return this.rentals;
+    public query(queryparams: QueryRentalType): Rental[] {
+        const foundRentals = this.rentals.filter(rental => Object.keys(queryparams).filter(k => queryparams[k]).every(param => rental[param as keyof typeof rental] == queryparams[param]));
+        return foundRentals;
     }
 
     public getInstance(): RentalRepository {
