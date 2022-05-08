@@ -19,6 +19,23 @@ type CreateAccommodationType = {
     price: number;
 }
 
+type QueryAccommodationType = {
+    id_user: string;
+    title: string;
+    description: string;
+    type: string;
+    state: string;
+    city: string;
+    street: string;
+    number: string;
+    zipcode: string;
+    capacity: string;
+    rooms: string;
+    bathrooms: string;
+    price: string;
+    [key: string]: string;
+};
+
 class AccommodationRepository {
     private accommodations: Accommodation[] = [];
     private static instance: AccommodationRepository;
@@ -73,14 +90,9 @@ class AccommodationRepository {
         this.accommodations = filtered;
     };
 
-
-    public userAccommodations(id_user: string): Accommodation[] {
-        const foundAccommodations = this.accommodations.filter(accommodation => accommodation.id_user == id_user);
+    public query(queryparams: QueryAccommodationType): Accommodation[] {
+        const foundAccommodations = this.accommodations.filter(accommodation => Object.keys(queryparams).filter(k => queryparams[k]).every(param => accommodation[param as keyof typeof accommodation] == queryparams[param]));
         return foundAccommodations;
-    }
-
-    public findAll(): Accommodation[] {
-        return this.accommodations;
     }
 
     public getInstance(): AccommodationRepository {
