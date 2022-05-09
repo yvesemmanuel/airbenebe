@@ -1,4 +1,5 @@
-<mat-form-field  class="range-date-input"  appearance="outline">
+<div class="date-dialog" fxLayout="column" fxLayoutAlign="center stretch">
+  <mat-form-field  class="range-date-input"  appearance="outline">
     <mat-label>Check-in - Check-out</mat-label>
     <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [dateFilter]="myFilter" [min]="minDate"
       [max]="maxDate" required>
@@ -9,9 +10,9 @@
     <mat-datepicker-toggle matSuffix [for]="picker" button-cy="calendar-toggle"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
-
-
-  <mat-card-actions fxLayout="space-between space-between">
-    <button mat-raised-button class='cancel-btn' (click)="changeDate()" color='primary'>Confirmar</button>
-    <button mat-raised-button class='cancel-btn' (click)="closeDialog()" color='warn'>Cancelar</button>
-  </mat-card-actions>
+  <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
+    <button mat-raised-button (click)="changeDate()" color='primary'>Confirmar</button>
+    <button mat-raised-button (click)="clearSelection()">Limpar</button>
+    <button mat-raised-button (click)="closeDialog()" color='warn'>Cancelar</button>
+  </div> 
+</div>

@@ -82,10 +82,14 @@ class RentalRepository {
 
     public updateDates(id: string, newStart: string, newEnd: string): Rental | undefined {
         const foundRental = this.rentals.find(rental => rental.id == id);
-
+        
         if (foundRental) {
+            const nights = (new Date(newEnd).getTime() - new Date(newStart).getTime()) / 86400000;
+
             foundRental.start_date = newStart;
             foundRental.end_date = newEnd;
+            foundRental.price = (foundRental.price / foundRental.nights) * nights
+            foundRental.nights = nights
 
             return foundRental;
         }

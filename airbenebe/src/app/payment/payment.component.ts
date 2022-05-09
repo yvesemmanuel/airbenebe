@@ -78,9 +78,10 @@ export class PaymentComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.paymentForm.valid) {
+    const id_user = window.localStorage.getItem("loggedID");
+    if (this.paymentForm.valid && id_user) {
       const rental: AddRental = {
-        "id_user": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
+        "id_user": id_user,
         "id_accommodation": this.accommodation.id,
         "guests": this.guests,
         "price": this.accommodation.price * this.nights,
@@ -94,7 +95,7 @@ export class PaymentComponent implements OnInit {
         error: err => console.log(err)
       })
       
-      this.router.navigate(['']);
+      this.router.navigate(['/myrentals']);
     }
   }
 

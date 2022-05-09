@@ -28,6 +28,11 @@ export class EditDateDialogComponent implements OnInit {
     return this.enableDate(date);
   };
 
+  ngOnInit(): void {
+    const id = this.data.accommodation.id;
+    this.getAccomodationRentals(id);
+  }
+
   getAccomodationRentals(id: string): void {
     this.rentalService.getAccomodationRentals(id).subscribe(rentals => {
       this.accRentals = rentals;
@@ -37,7 +42,7 @@ export class EditDateDialogComponent implements OnInit {
 
 
   enableDate(date: Date): boolean {
-    for (let rental of this.accRentals) {
+    for (let rental of this.accRentals.filter(r => r.id != this.data.id)) {
       const start = new Date(rental.start_date);
       const end = new Date(rental.end_date);
       if ((start <= date) && (date <= end)) {
@@ -46,19 +51,21 @@ export class EditDateDialogComponent implements OnInit {
     }
     return true
   }
+  
   changeDate(){
-    const start = this.range.value['start'];
-    const end = this.range.value['end'];
-    this.rentalService.updateRental(this.data.id,start,end).subscribe({
+    const start = this.range.value['start'].toJSON();
+    const end = this.range.value['end'].toJSON();
+    this.rentalService.updateRental(this.data.id, start, end).subscribe({
       error: err => console.log(err)
     });
     this.closeDialog();
   }
+
   startDateChanged(e: any) {
     const date = e.value;
     if (date != null) {
       let min = this.maxDate;
-      for (let rental of this.accRentals) {
+      for (let rental of this.accRentals.filter(r => r.id != this.data.id)) {
         const start = new Date(rental.start_date);
         if ((date < start) && (start < min)) {
           min = start
@@ -73,9 +80,10 @@ export class EditDateDialogComponent implements OnInit {
   closeDialog () {
     this.dialogRef.close()
   }
-  ngOnInit(): void {
-    const id = this.data.accommodation.id;
-    this.getAccomodationRentals(id);
+
+  clearSelection() {
+    this.range.reset();
+    this.maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
   }
 
 }

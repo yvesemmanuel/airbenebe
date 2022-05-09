@@ -10,6 +10,7 @@ interface Imovel {
   value: string;
   viewValue: string;
 }
+
 interface Estado {
   value: string;
   viewValue: string;
@@ -57,8 +58,6 @@ export class AddListingComponent implements OnInit {
     {value: 'Distrito Federal', viewValue: 'Distrito Federal'}
   ];
 
-  
-
   isLinear = false;
   firstFormGroup = new FormGroup({
     firstCtrl: new FormControl("", [Validators.required])
@@ -87,8 +86,6 @@ export class AddListingComponent implements OnInit {
     eleventhCtrl: new FormControl("", [Validators.required]),
     twelvethCtrl: new FormControl("", [Validators.required])
   });
-  
-  
    
   constructor(private router: Router, private accommodationService:AccommodationService) { }
   selectedfile = [];
@@ -112,9 +109,10 @@ export class AddListingComponent implements OnInit {
   }   
   
   onSubmit() {
-    if (this.fifthFormGroup.valid) {
+    const id_user = window.localStorage.getItem("loggedID");
+    if (this.fifthFormGroup.valid && id_user) {
       const accommodation: AddAccommodation = {
-        'id_user': "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
+        'id_user': id_user,
         'title': this.fifthFormGroup.value['eleventhCtrl'],
         'description': this.fifthFormGroup.value['twelvethCtrl'],
         'type': this.firstFormGroup.value['firstCtrl'],
@@ -139,7 +137,6 @@ export class AddListingComponent implements OnInit {
   }
   
   ngOnInit() {
-
   }
   
 }

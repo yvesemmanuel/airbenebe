@@ -15,6 +15,10 @@ import { AccommodationComponent } from './accommodation/accommodation.component'
 import { PaymentComponent } from './payment/payment.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
 import { ListingComponent } from './listing/listing.component';
+import { RentalComponent } from './rental/rental.component';
+import { UserAccommodationsComponent } from '../app/user-accommodations/user-accommodations.component';
+import { EditDateDialogComponent } from './edit-date-dialog/edit-date-dialog.component';
+import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -32,14 +36,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { RentalComponent } from './rental/rental.component';
-import { EditDateDialogComponent } from './edit-date-dialog/edit-date-dialog.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { UserAccommodationsComponent } from '../app/user-accommodations/user-accommodations.component';
 
 
 @NgModule({

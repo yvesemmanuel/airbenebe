@@ -44,9 +44,9 @@ export class RentalService {
     return this.http.post<Rental>(this.rentalUrl, rental, this.httpOptions);
   }
 
-  updateRental(id: string, start_date: string,end_date:string): Observable<Rental> {
-     return this.http.post<Rental>(`${this.rentalUrl}/${id}`,{
-       start_date, end_date
+  updateRental(id: string, newStart: string, newEnd: string): Observable<Rental> {
+     return this.http.put<Rental>(`${this.rentalUrl}/${id}`,{
+       newStart, newEnd
       }, this.httpOptions);
   }
 

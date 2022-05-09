@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { Accommodation } from '../interfaces/Accommodation';
 import { Rental } from '../interfaces/Rental';
 import { AccommodationService } from '../services/accommodationService/accommodation.service';
@@ -19,8 +17,7 @@ export class RentalComponent implements OnInit {
   constructor(
     private rentalService: RentalService,
     public matDialog: MatDialog,
-    private accommodationService: AccommodationService,
-    private route: ActivatedRoute) { }
+    private accommodationService: AccommodationService) { }
 
   id_user: string = "";
   accRentals: Rental[] = [];
@@ -28,11 +25,11 @@ export class RentalComponent implements OnInit {
   accommodation!: Accommodation
 
   openEditDateDialog(data: any): any {
-    this.matDialog.open(EditDateDialogComponent, {
-      width: '300px',
+    const dialogRef = this.matDialog.open(EditDateDialogComponent, {
       data,
       maxHeight: '200px',
     });
+    dialogRef.afterClosed().subscribe(() => this.getRentals(this.id_user));
   }
 
   cancelResevation(id: string): void {

@@ -8,11 +8,12 @@ import { AccommodationComponent } from './accommodation/accommodation.component'
 import { PaymentComponent } from './payment/payment.component';
 import { AccommodationDetailComponent } from './accommodation-detail/accommodation-detail.component';
 import { ListingComponent } from './listing/listing.component';
-
-import { PaymentGuard } from './guards/payment.guard';
 import { RentalComponent } from './rental/rental.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
 import { UserAccommodationsComponent } from './user-accommodations/user-accommodations.component';
+
+import { PaymentGuard } from './guards/paymentGuard/payment.guard';
+import { AuthGuard } from './guards/authGuard/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,19 +26,23 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'add-listing',
-    component: AddListingComponent
+    component: AddListingComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "myrentals",
     component: RentalComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "myaccommodations",
     component: UserAccommodationsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'accommodation',
@@ -45,18 +50,20 @@ const routes: Routes = [
     children: [
       {
         path: ':id',
-        component: AccommodationComponent
+        component: AccommodationComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: ':id/payment',
         component: PaymentComponent,
-        canActivate: [PaymentGuard]
+        canActivate: [AuthGuard, PaymentGuard]
       }
     ]
   },
   {
     path: 'listings',
-    component: ListingComponent
+    component: ListingComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

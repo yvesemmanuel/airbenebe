@@ -20,6 +20,7 @@ export class ConfirmDeleteDialogComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close()
   }
+  
   ngOnInit(): void {
   }
 
