@@ -5,25 +5,25 @@
 
             <div class="container">
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Email do Usuário" name="email" required>
+                <input type="email" placeholder="Email do Usuário (Obrigatório)" name="email" [(ngModel)]="user.email">
 
                 <label for="nome"><b>Nome Completo</b></label>
-                <input type="text" placeholder="Nome do Usuário" name="username" required>
+                <input type="text" placeholder="Nome do Usuário (Obrigatório)" name="username" [(ngModel)]="user.name">
 
                 <label for="password"><b>Senha</b></label>
-                <input type="password" placeholder="Senha do Usuário" name="password" required>
+                <input type="password" placeholder="Senha do Usuário (Obrigatório)" name="password" [(ngModel)]="user.password">
 
-                <label for="password"><b>Confirmar senha</b></label>
-                <input type="password" placeholder="Confirmar senha do Usuário" name="password" required>
+                <label for="password"><b>Confirmar Senha</b></label>
+                <input type="password" placeholder="Confirmar Senha do Usuário (Obrigatório)" name="password" [(ngModel)]="user.passwordConfirmation">
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit" (click)="userRegister(user)">Cadastrar</button>
                 <label>
-                <input type="checkbox" checked="checked" name="remember">Lembrar de mim
-              </label>
+                <input type="checkbox" checked="checked" name="accept-terms" [(ngModel)]="termsAccepted">Aceito os termos de Uso
+                </label>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
-                <a routerLink=""><button type="button" class="cancelbtn">Voltar</button></a>
+                <a routerLink=""><button type="button" id="cancelbtn" class="cancelbtn">Voltar</button></a>
             </div>
         </form>
     </div>
