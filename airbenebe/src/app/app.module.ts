@@ -14,6 +14,7 @@ import { AccommodationDetailComponent } from './accommodation-detail/accommodati
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
+import { ListingComponent } from './listing/listing.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -38,8 +39,8 @@ import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-de
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { UserAccommodationsComponent } from '../app/user-accommodations/user-accommodations.component';
 
-///aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     RentalComponent,
     EditDateDialogComponent,
     ConfirmDeleteDialogComponent,
-    AddListingComponent
+    AddListingComponent,
+    ListingComponent,
+    UserAccommodationsComponent
   ],
   imports: [
     BrowserModule,

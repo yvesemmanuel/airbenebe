@@ -22,9 +22,10 @@ export class RentalComponent implements OnInit {
     private accommodationService: AccommodationService,
     private route: ActivatedRoute) { }
 
-
-  public rentals: any[] = []
-  public accommodation!: Accommodation
+  id_user: string = "";
+  accRentals: Rental[] = [];
+  rentals: any[] = []
+  accommodation!: Accommodation
 
   openEditDateDialog(data: any): any {
     this.matDialog.open(EditDateDialogComponent, {
@@ -32,15 +33,12 @@ export class RentalComponent implements OnInit {
       data,
       maxHeight: '200px',
     });
-    // dialogRef.afterClosed().subscribe(() => this.refreshData());
   }
-  cancelResevation(id: string): any {
 
+  cancelResevation(id: string): void {
     const data = {
       id,
-      deleteFunction: () => this.rentalService.deleteRental(id).subscribe(rental => {
-        console.log("rental", rental)
-      })
+      deleteFunction: () => this.rentalService.deleteRental(id).subscribe({error: e => console.log(e)})
     }
 
     const dialogRef = this.matDialog.open(ConfirmDeleteDialogComponent, {
@@ -48,30 +46,25 @@ export class RentalComponent implements OnInit {
       data,
       maxHeight: '150px',
     });
-    dialogRef.afterClosed().subscribe(() => this.getRentals());
+    dialogRef.afterClosed().subscribe(() => this.getRentals(this.id_user));
   }
 
-  closeDate(start:string){
-    
+  closeDate(start: string): boolean {
     const date:Date = new Date(start);
     const today:Date = new Date();
     const days = (date.getTime()-today.getTime())/86400000;
     return days < 7;
-    
-    
   }
-
-
 
   ngOnInit(): void {
-    this.getRentals();
-    
-
+    const id = window.localStorage.getItem("loggedID");
+    if (id) {
+      this.id_user = id;
+      this.getRentals(id);
+    }
   }
 
-  accRentals: Rental[] = [];
-
-  formatDate(date: string) {
+  formatDate(date: string): string {
     const formatedDate = date,
       [yyyy, mm, dd, hh, mi] = date.split(/[/:\-T]/);
     return `${dd}/${mm}/${yyyy}`;
@@ -81,22 +74,17 @@ export class RentalComponent implements OnInit {
     return date.toLocaleDateString("pt-Br");
   }
 
-
   getAccomodationRentals(id: string): void {
     this.rentalService.getAccomodationRentals(id).subscribe(rentals => {
       this.accRentals = rentals;
     });
   }
 
-
-
-
   stringifyPrice(price: number): string {
     return `R$ ${price.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
   }
 
-  getRentals(): void {
-    const id = String(this.route.snapshot.paramMap.get("id"));
+  getRentals(id: string): void {
     this.rentalService.getUserRentals(id).subscribe(rentals => {
       rentals.forEach(rental => {
         this.getAccommodation(rental.id_accommodation, rental)

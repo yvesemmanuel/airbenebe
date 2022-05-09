@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 
 export class AppComponent {
   title = 'airbenebe';
-  isLogged: boolean = true;
+  isLogged: boolean = window.localStorage.getItem("loggedID") != null;
   hideHeader: boolean = false;
 
   constructor(private router: Router) {
@@ -18,5 +18,10 @@ export class AppComponent {
         this.hideHeader = this.router.url == '/login' || this.router.url == '/register';
       }
     });
+  }
+
+  logout(){
+    window.localStorage.removeItem("loggedID")
+    this.isLogged = false;
   }
 }

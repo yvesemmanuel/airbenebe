@@ -98,6 +98,7 @@
     align-self: flex-end;
     width: 80px;
 }
+
 .error {
     color: red;
     font-size: 12px;

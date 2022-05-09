@@ -21,4 +21,8 @@ export class UserService {
   addUser(user: AddUser): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions);
   }
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>('http://localhost:3333/login', {email, password}, this.httpOptions);
+  }
+
 }

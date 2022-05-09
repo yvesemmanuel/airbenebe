@@ -1,25 +1,40 @@
 <body>
     <div class="main-container">
 
-        <form action="#" method="post">
-
-            <div class="container">
-                <label for="username"><b>Email</b></label>
-                <input type="text" placeholder="Email do Usuário" name="username" required>
-
-                <label for="password"><b>Senha</b></label>
-                <input type="password" placeholder="Senha do Usuário" name="password" required>
-
-                <button type="submit">Entrar</button>
-                <label>
-                <input type="checkbox" checked="checked" name="remember">Lembrar de mim
-              </label>
+        <mat-card>
+            <div style="text-align:center">
+                <mat-card-title>Login</mat-card-title>
             </div>
+            <form [formGroup]="loginForm">
 
-            <div class="container" style="background-color:#f1f1f1">
-                <a routerLink=""><button type="button" class="cancelbtn">Voltar</button></a>
-                <span class="password">Esqueci minha <a href="#">senha?</a></span>
-            </div>
-        </form>
+                <div class="container" fxLayout="column">
+                    <mat-form-field appearance="outline">
+                        <mat-label for="email">Email</mat-label>
+                        <input formControlName="email" matInput type="text" placeholder="Email do Usuário" name="email" required>
+                        <mat-error>Por favor, insira seu e-mail!</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input placeholder="Senha" formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>Por favor, insira sua senha!</mat-error>
+                    </mat-form-field>
+
+                    <button class="submit-btn" type="submit" (click)="login()">Entrar</button>
+                    <p class="error" *ngIf="invalidUser">
+                        Nome de usuário ou senha incorretos.
+                    </p>
+                </div>
+            </form>
+
+            <mat-card-footer style="background-color:#f1f1f1" class="footer">
+                <a routerLink=""><button mat-raised-button type="button" class="cancelbtn">Voltar</button></a>
+                <span class="password"><a routerLink="/register">Não possui  conta?</a></span>
+            </mat-card-footer>
+
+        </mat-card>
     </div>
 </body>

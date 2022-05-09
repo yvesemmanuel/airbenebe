@@ -1,0 +1,109 @@
+.main {
+    position: relative;
+}
+
+.main_content {
+    width: 90%;  
+    padding-left: 24px;
+    padding-top: 2%;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+.greyText {
+    color: #717171;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: 'Circular Light';
+}
+
+
+.listings_item {
+    padding: 24px 0;
+    display: flex;
+}
+
+.listings_image {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.listings_content {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.heartButton:hover::after {
+    opacity: 1;
+}
+
+.itemTitle {
+    font-size: 18px;
+    color: #252525;
+    margin: 5px 0 15px;
+    font-family: 'Circular Book';
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.separator {
+    width: 32px;
+    height: 1px;
+    background: #cdcdcd;
+}
+
+.listings_description {
+    padding-top: 15px;
+}
+
+.span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.listings_details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.listings_price {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.listings_price_night {
+    font-size: 18px;
+    font-family: 'Circular Book';
+    font-weight: bold;
+}
+
+.listings_price_night span{
+    color: #727272;
+    font-weight: 200;
+}
+
+@media (max-width: 570px){
+    .listings_item {
+        flex-direction: column;
+    }
+
+    .main_content {
+        padding-left: 10px;
+    }
+}

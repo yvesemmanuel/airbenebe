@@ -7,10 +7,12 @@ import { RegisterComponent } from './register/register.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AccommodationDetailComponent } from './accommodation-detail/accommodation-detail.component';
+import { ListingComponent } from './listing/listing.component';
 
 import { PaymentGuard } from './guards/payment.guard';
 import { RentalComponent } from './rental/rental.component';
 import { AddListingComponent } from './add-listing/add-listing.component';
+import { UserAccommodationsComponent } from './user-accommodations/user-accommodations.component';
 
 const routes: Routes = [
   {
@@ -30,8 +32,12 @@ const routes: Routes = [
     component: AddListingComponent
   },
   {
-    path: "rental/:id",
+    path: "myrentals",
     component: RentalComponent,
+  },
+  {
+    path: "myaccommodations",
+    component: UserAccommodationsComponent,
   },
   {
     path: 'accommodation',
@@ -47,6 +53,10 @@ const routes: Routes = [
         canActivate: [PaymentGuard]
       }
     ]
+  },
+  {
+    path: 'listings',
+    component: ListingComponent
   }
 ];
 

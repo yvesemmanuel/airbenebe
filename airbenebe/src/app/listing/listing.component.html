@@ -1,0 +1,51 @@
+
+    <div class="main">
+        <div class="main_content">
+            <h3>Foram listadas {{ accommodations.length > 1 ? accommodations.length + ' acomodações' :
+                accommodations.length + ' acomodação' }}</h3>
+            <mat-divider></mat-divider> 
+            <div class="main_listing" *ngFor="let accommodation of accommodations">
+                <div class="listings_item">
+                    <div class="listings_image">
+                        <img class="image" routerLink="/accommodation/{{accommodation?.id}}" src="{{accommodation.images[0]}}" alt="{{accommodation.title}}">
+                    </div>
+                    <div class="listings_content">
+                        <div class="listings_title">
+                            <div class="listings_icon_text">
+                                <span class="greyText">{{accommodation.type}} em {{accommodation.city}}</span>
+                                <h2 class="itemTitle" routerLink="/accommodation/{{accommodation?.id}}">{{accommodation.title}} | {{accommodation.street}} {{accommodation.number}} - {{accommodation.city}}</h2>
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="listings_description">
+                            <span class="greyText span">
+                                <span>
+                                    {{ accommodation.capacity > 1 ? accommodation.capacity + ' hóspedes' :
+                                    accommodation.capacity + ' hóspede' }}
+                                </span>
+                                <span> &centerdot; </span>
+                                <span>
+                                    {{ accommodation.rooms > 1 ? accommodation.rooms + ' quartos' :
+                                    accommodation.rooms + ' quarto' }}
+                                </span>
+                                <span> &centerdot; </span>
+                                <span>
+                                    {{ accommodation.bathrooms > 1 ? accommodation.bathrooms + ' banheiros' :
+                                    accommodation.bathrooms + ' banheiro' }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="listings_details">
+                            <div class="listings_price">
+                                <div class="listings_price_night">
+                                    {{stringifyPrice(accommodation.price)}} <span> / noite</span>
+                                </div>
+                                <div class="listings_price_total"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </div>
+    </div>

@@ -3,10 +3,10 @@
     <img class="logo" src="assets/logo/icon.png" alt="Airbenebe icon" routerLink="/" fxHide="false" fxHide.gt-md>
 
     <div *ngIf="isLogged" class="nav-options" fxLayoutGap="50px" fxShow="false" fxShow.gt-sm>
-        <span class="nav-btn" routerLink="">Alugue um imóvel</span>
-        <span class="nav-btn" routerLink="add-listing">Hospede seu imóvel</span>
-        <span class="nav-btn" routerLink="/rental/25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df">Minhas reservas</span>
-        <span class="nav-btn" routerLink="">Meus imóveis</span>
+        <span class="nav-btn" routerLink="/listings">Alugue um imóvel</span>
+        <span class="nav-btn" routerLink="/add-listing">Hospede seu imóvel</span>
+        <span class="nav-btn" routerLink="/myrentals">Minhas reservas</span>
+        <span class="nav-btn" routerLink="/myaccommodations">Meus imóveis</span>
     </div>
 
     <div *ngIf="!isLogged" class="user-options" fxLayoutGap="15px" fxShow="false" fxShow.gt-sm>
@@ -34,14 +34,14 @@
     <div *ngIf="isLogged">
         <button mat-menu-item routerLink="">Notificações</button>
         <div fxHide="false" fxHide.gt-sm>
-            <button mat-menu-item routerLink="/rental/25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df">Minhas reservas</button>
-            <button mat-menu-item routerLink="">Meus imóveis</button>
+            <button mat-menu-item routerLink="/myrentals">Minhas reservas</button>
+            <button mat-menu-item routerLink="/myaccommodations">Meus imóveis</button>
             <mat-divider></mat-divider>
-            <button mat-menu-item routerLink="">Alugue um imóvel</button>
-            <button mat-menu-item routerLink="add-listing">Hospede seu imóvel</button>
+            <button mat-menu-item routerLink="/listings">Alugue um imóvel</button>
+            <button mat-menu-item routerLink="/add-listing">Hospede seu imóvel</button>
         </div>
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="">Sair</button>
+        <button mat-menu-item routerLink="" (click)="logout()">Sair</button>
     </div>
 </mat-menu>
 

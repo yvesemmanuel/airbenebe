@@ -30,7 +30,14 @@ export class AccommodationService {
     return this.http.post<Accommodation>(this.accommodationUrl, accommodation, this.httpOptions);
   }
 
+  getUserAccommodations(id_user: string): Observable<Accommodation[]> {
+    return this.http.get<Accommodation[]>(this.accommodationUrl, {
+      headers: { 'Content-Type': 'application/json' },
+      params: {"id_user": id_user}
+    });
+  }
+
   deleteAccommodation(id: string): Observable<Accommodation> {
-    return this.http.post<Accommodation>(`${this.accommodationUrl}/${id}`, this.httpOptions);
+    return this.http.delete<Accommodation>(`${this.accommodationUrl}/${id}`, this.httpOptions);
   }
 }
