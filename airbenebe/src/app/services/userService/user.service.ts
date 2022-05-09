@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { User } from '../../User';
+import { User } from '../../interfaces/User';
+import { AddUser } from 'src/app/interfaces/addinterface/AddUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private userUrl = 'http://localhost:3000/users'
+  private userUrl = 'http://localhost:3333/users'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,8 +18,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  addUser(user: User): Observable<User> {
-    console.log('add');
+  addUser(user: AddUser): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions);
   }
 }

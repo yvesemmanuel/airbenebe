@@ -1,6 +1,5 @@
-export interface Accommodation {
-    id: number;
-    id_user: number;
+export interface AddAccommodation {
+    id_user: string;
     title: string;
     description: string;
     type: string;

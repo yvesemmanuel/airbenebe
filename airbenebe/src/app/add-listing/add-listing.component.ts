@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient, HttpRequest, HttpEvent} from '@angular/common/http'
 import { ActivatedRoute, Router } from '@angular/router';
-import { Accommodation } from '../Accommodation';
+import { Accommodation } from '../interfaces/Accommodation';
+import { AddAccommodation } from '../interfaces/addinterface/AddAccommodation';
 import { AccommodationService} from '../services/accommodationService/accommodation.service';
 
 interface Imovel {
@@ -112,9 +113,8 @@ export class AddListingComponent implements OnInit {
   
   onSubmit() {
     if (this.fifthFormGroup.valid) {
-      const accommodation: Accommodation = {
-        'id': 1333,
-        'id_user': 2,
+      const accommodation: AddAccommodation = {
+        'id_user': "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
         'title': this.fifthFormGroup.value['eleventhCtrl'],
         'description': this.fifthFormGroup.value['twelvethCtrl'],
         'type': this.firstFormGroup.value['firstCtrl'],
