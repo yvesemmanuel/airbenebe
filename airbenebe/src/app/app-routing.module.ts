@@ -9,7 +9,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { AccommodationDetailComponent } from './accommodation-detail/accommodation-detail.component';
 import { ListingComponent } from './listing/listing.component';
 import { RentalComponent } from './rental/rental.component';
-import { AddListingComponent } from './add-listing/add-listing.component';
+import { AddAccommodationComponent } from './add-accommodation/add-accommodation.component';
 import { UserAccommodationsComponent } from './user-accommodations/user-accommodations.component';
 
 import { PaymentGuard } from './guards/paymentGuard/payment.guard';
@@ -30,8 +30,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'add-listing',
-    component: AddListingComponent,
+    path: 'add-accommodation',
+    component: AddAccommodationComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -61,7 +61,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'listings',
+    path: 'listing',
     component: ListingComponent,
     canActivate: [AuthGuard]
   }

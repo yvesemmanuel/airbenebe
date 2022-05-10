@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.loginForm.value["email"], this.loginForm.value["password"]).subscribe({
         next: (user:any) => {
           window.localStorage.setItem("loggedID", user.id);
-          this.router.navigate(["/listings"]);
+          this.router.navigate(["/listing"]);
         },
         error: e => this.invalidUser = true
       });
