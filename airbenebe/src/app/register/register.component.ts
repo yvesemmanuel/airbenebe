@@ -18,18 +18,27 @@ export class RegisterComponent implements OnInit {
   hide: boolean = true;
   hide_confirmation: boolean = true;
   invalidUser: boolean = false;
+  duplicatedEmail: boolean = false;
   registerForm: FormGroup = new FormGroup({ email: new FormControl("", [Validators.email]), name: new FormControl(""), password: new FormControl(""), password_confirmation: new FormControl("") });
 
   register() {
     if (this.registerForm.valid) {
       this.userService.register(this.registerForm.value["email"], this.registerForm.value["name"], this.registerForm.value["password"], this.registerForm.value["password_confirmation"]).subscribe({
-        next: (user:any) => {
-          window.localStorage.setItem("loggedID", user.id);
-          this.router.navigate(["/listing"]);
+        next: (user: any) => {
+          this.router.navigate(["/login"]);
         },
-        error: e => this.invalidUser = true
+        error: e => {
+          this.invalidUser = true;
+          if (e.error.message === "Given email already exists."){
+            this.duplicatedEmail = true;
+          }
+        }
       });
     }
   }
-  
+
+  onMove(): void {
+    this.duplicatedEmail = false;
+ }
+
 }

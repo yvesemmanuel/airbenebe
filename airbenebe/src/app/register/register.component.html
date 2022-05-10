@@ -1,3 +1,5 @@
+<html (mousemove)="onMove()">
+
 <body>
     <div class="main-container">
 
@@ -36,10 +38,11 @@
                           <mat-icon>{{hide_confirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                         <mat-error>Por favor, confirme sua senha!</mat-error>
-                        <!-- <p class="error" *ngIf="confirmPassword">
-                        As senhas não são iguais.
-                    </p> -->
                     </mat-form-field>
+
+                    <p class="error" *ngIf="duplicatedEmail">
+                        Já existe um usuário com esse e-mail.
+                    </p>
 
                     <button class="submit-btn" type="submit" (click)="register()">Cadastrar</button>
                 </div>
@@ -52,3 +55,5 @@
         </mat-card>
     </div>
 </body>
+
+</html>
