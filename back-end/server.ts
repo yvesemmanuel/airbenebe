@@ -7,7 +7,8 @@ import AccommodationRoutes from './src/routes/Accommodation.Routes';
 
 const app = express();
 
-app.use(express.json());
+const bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors());
 
 app.use(UserRoutes);
