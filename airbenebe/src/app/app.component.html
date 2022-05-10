@@ -3,8 +3,8 @@
     <img class="logo" src="assets/logo/icon.png" alt="Airbenebe icon" routerLink="/" fxHide="false" fxHide.gt-md>
 
     <div *ngIf="isLogged" class="nav-options" fxLayoutGap="50px" fxShow="false" fxShow.gt-sm>
-        <span class="nav-btn" routerLink="/listings">Alugue um imóvel</span>
-        <span class="nav-btn" routerLink="/add-listing">Hospede seu imóvel</span>
+        <span class="nav-btn" routerLink="/listing">Alugue um imóvel</span>
+        <span class="nav-btn" routerLink="/add-accommodation">Hospede seu imóvel</span>
         <span class="nav-btn" routerLink="/myrentals">Minhas reservas</span>
         <span class="nav-btn" routerLink="/myaccommodations">Meus imóveis</span>
     </div>
@@ -37,8 +37,8 @@
             <button mat-menu-item routerLink="/myrentals">Minhas reservas</button>
             <button mat-menu-item routerLink="/myaccommodations">Meus imóveis</button>
             <mat-divider></mat-divider>
-            <button mat-menu-item routerLink="/listings">Alugue um imóvel</button>
-            <button mat-menu-item routerLink="/add-listing">Hospede seu imóvel</button>
+            <button mat-menu-item routerLink="/listing">Alugue um imóvel</button>
+            <button mat-menu-item routerLink="/add-accommodation">Hospede seu imóvel</button>
         </div>
         <mat-divider></mat-divider>
         <button mat-menu-item routerLink="" (click)="logout()">Sair</button>

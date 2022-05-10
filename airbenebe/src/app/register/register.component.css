@@ -4,27 +4,12 @@ body {
 }
 
 .main-container {
-    min-width: 20%;
+    min-width: 500px;
     display: table-cell;
     vertical-align: middle;
 }
 
-form {
-    border: 3px solid #f1f1f1;
-}
-
-input[type=email],
-input[type=text],
-input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid rgb(148, 95, 95);
-    box-sizing: border-box;
-}
-
-button {
+.submit-btn {
     background-color: #4C76E1;
     color: white;
     padding: 14px 20px;
@@ -35,23 +20,21 @@ button {
     border-radius: 5px;
 }
 
-button:hover {
+.submit-btn:hover {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     background-color: #EB4C60;
 }
 
 .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #EB4C60;
+    margin: 10px 0 10px 0;
 }
 
-.cancelbtn:hover {
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    background-color: #4C76E1;
+.footer {
+    padding: 0 20px 0 20px;
 }
 
 .container {
+    min-width: 80%;
     padding: 16px;
 }
 
@@ -60,7 +43,16 @@ span.password {
     padding-top: 16px;
 }
 
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
 @media screen and (max-width: 300px) {
+    .main-container {
+        min-width: 100px;
+    }
     span.password {
         display: block;
         float: none;

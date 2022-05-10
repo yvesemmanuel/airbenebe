@@ -125,4 +125,8 @@ export class AccommodationComponent implements OnInit {
     this.guests--;
   }
 
+  checkOwner(): boolean {
+    return window.localStorage.getItem("loggedID") == this.accommodation.id_user;
+  }
+
 }

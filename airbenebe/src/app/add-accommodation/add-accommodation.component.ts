@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient, HttpRequest, HttpEvent} from '@angular/common/http'
-import { ActivatedRoute, Router } from '@angular/router';
-import { Accommodation } from '../interfaces/Accommodation';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AddAccommodation } from '../interfaces/addinterface/AddAccommodation';
-import { AccommodationService} from '../services/accommodationService/accommodation.service';
+import { AccommodationService } from '../services/accommodationService/accommodation.service';
 
 interface Imovel {
   value: string;
@@ -17,11 +15,12 @@ interface Estado {
 }
 
 @Component({
-  selector: 'app-add-listing',
-  templateUrl: './add-listing.component.html',
-  styleUrls: ['./add-listing.component.css']
+  selector: 'app-add-accommodation',
+  templateUrl: './add-accommodation.component.html',
+  styleUrls: ['./add-accommodation.component.css']
 })
-export class AddListingComponent implements OnInit {
+export class AddAccommodationComponent implements OnInit {
+
   Imoveis: Imovel[] = [
     {value: 'Apartamento', viewValue: 'Apartamento'},
     {value: 'Casa', viewValue: 'Casa'},
@@ -104,8 +103,6 @@ export class AddListingComponent implements OnInit {
         reader.readAsDataURL(this.selectedfile[i]);
       }
     }
-    console.log(this.base64);
-   
   }   
   
   onSubmit() {
@@ -129,10 +126,9 @@ export class AddListingComponent implements OnInit {
       }
 
       this.accommodationService.addAccommodation(accommodation).subscribe({
+        next: nxt => this.router.navigate(['/myaccommodations']),
         error: err => console.log(err)
       })
-      
-      this.router.navigate(['']);
     }
   }
   

@@ -16,12 +16,12 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(routerEvent => {
       if (routerEvent instanceof NavigationEnd) {
         this.hideHeader = this.router.url == '/login' || this.router.url == '/register';
+        this.isLogged = window.localStorage.getItem("loggedID") != null;
       }
     });
   }
 
   ngOnInit(): void {
-    this.isLogged = window.localStorage.getItem("loggedID") != null;
   }
 
   logout(){

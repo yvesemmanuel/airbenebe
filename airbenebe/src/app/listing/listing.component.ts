@@ -11,7 +11,7 @@ export class ListingComponent implements OnInit {
 
   constructor(private accommodationService: AccommodationService) { }
   
-  public accommodations!: Accommodation[];
+  public accommodations: Accommodation[] = [];
 
   ngOnInit(): void {
     this.getAccommodations()
@@ -19,7 +19,6 @@ export class ListingComponent implements OnInit {
 
   getAccommodations () {
     this.accommodationService.getAccommodations().subscribe(result => {
-      console.log('result',result)
       this.accommodations = result
     })
   }
