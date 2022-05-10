@@ -10,8 +10,8 @@
     </div>
 
     <div *ngIf="!isLogged" class="user-options" fxLayoutGap="15px" fxShow="false" fxShow.gt-sm>
-        <button mat-raised-button class="user-btn" routerLink="/login">Entrar</button>
-        <button mat-raised-button class="user-btn" routerLink="/register">Cadastrar</button>
+        <button mat-raised-button class="user-btn" routerLink="/login" data-cy="loginBtn">Entrar</button>
+        <button mat-raised-button class="user-btn" routerLink="/register" data-cy="registerBtn">Cadastrar</button>
     </div>
 
     <button *ngIf="!isLogged" mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
