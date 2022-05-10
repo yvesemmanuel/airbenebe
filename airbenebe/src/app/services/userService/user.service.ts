@@ -9,20 +9,21 @@ import { AddUser } from 'src/app/interfaces/addinterface/AddUser';
   providedIn: 'root'
 })
 export class UserService {
-
+  private loginUrl = 'http://localhost:3333/login';
   private userUrl = 'http://localhost:3333/users'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  addUser(user: AddUser): Observable<User> {
-    return this.http.post<User>(this.userUrl, user, this.httpOptions);
+  register(email: string, name: string, password: string, password_confirmation: string): Observable<User> {
+    return this.http.post<User>(this.userUrl, {email, name, password, password_confirmation}, this.httpOptions);
   }
+
   login(email: string, password: string): Observable<User> {
-    return this.http.post<User>('http://localhost:3333/login', {email, password}, this.httpOptions);
+    return this.http.post<User>(this.loginUrl, { email, password }, this.httpOptions);
   }
 
 }
