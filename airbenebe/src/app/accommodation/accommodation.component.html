@@ -73,7 +73,7 @@
                                 <mat-icon>add_circle_outline</mat-icon>
                             </button>
                         </div>
-                        <button mat-raised-button class="renting-button" [disabled]="false" (click)="this.toPayment()" button-cy="renting">
+                        <button mat-raised-button class="renting-button" [disabled]="checkOwner()" (click)="this.toPayment()" button-cy="renting">
                             Reservar
                         </button>
                         <div class="total" *ngIf="this.validDate()" fxLayoutAlign="space-between center" data-cy="total">
