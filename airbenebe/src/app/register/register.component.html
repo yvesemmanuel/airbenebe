@@ -44,6 +44,10 @@
                         Já existe um usuário com esse e-mail.
                     </p>
 
+                    <p class="error" *ngIf="notMatchedPassword">
+                        As senhas não são iguais.
+                    </p>
+
                     <button class="submit-btn" type="submit" (click)="register()">Cadastrar</button>
                 </div>
             </form>

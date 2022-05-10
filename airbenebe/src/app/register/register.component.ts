@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   hide_confirmation: boolean = true;
   invalidUser: boolean = false;
   duplicatedEmail: boolean = false;
+  notMatchedPassword: boolean = false;
   registerForm: FormGroup = new FormGroup({ email: new FormControl("", [Validators.email]), name: new FormControl(""), password: new FormControl(""), password_confirmation: new FormControl("") });
 
   register() {
@@ -29,8 +30,11 @@ export class RegisterComponent implements OnInit {
         },
         error: e => {
           this.invalidUser = true;
-          if (e.error.message === "Given email already exists."){
+          if (e.error.message === "Given email already exists.") {
             this.duplicatedEmail = true;
+          }
+          else if (e.error.message === "Confirmation password don't match.") {
+            this.notMatchedPassword = true;
           }
         }
       });
@@ -39,6 +43,7 @@ export class RegisterComponent implements OnInit {
 
   onMove(): void {
     this.duplicatedEmail = false;
- }
+    this.notMatchedPassword = false;
+  }
 
 }
