@@ -36,7 +36,6 @@ export class EditDateDialogComponent implements OnInit {
   getAccomodationRentals(id: string): void {
     this.rentalService.getAccomodationRentals(id).subscribe(rentals => {
       this.accRentals = rentals;
-      console.log(this.accRentals);
     });
    }
 

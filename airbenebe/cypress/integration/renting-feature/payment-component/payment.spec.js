@@ -1,6 +1,16 @@
 describe("Teste de GUI do componente de pagamento", () => {
     beforeEach(() => {
-        cy.visit("accommodation/1");
+        cy.clearLocalStorage();
+        cy.visit("/login");
+        cy.url().should('eq', 'http://localhost:4200/login');
+        cy.get("[input-cy=email]").type("joaopedro@gmail.com");
+        cy.get("[input-cy=password]").type("111");
+        cy.get("[button-cy=logar]").click();
+        cy.wait(2000);
+    });
+
+    beforeEach(() => {
+        cy.visit("accommodation/200e37d4-2feb-4dfa-aa09-892017d595b6");
         cy.get("[button-cy=calendar-toggle]").click();
         cy.contains('25').click();
         cy.contains('27').click();
@@ -38,5 +48,10 @@ describe("Teste de GUI do componente de pagamento", () => {
         cy.get("[input-cy=name]").type("Joao Pedro");
         cy.get("[input-cy=expiry]").type("0824");
         cy.get("[input-cy=cvv]").type("456");
+        cy.get("[button-cy=payment]").click();
+        cy.wait(2000);
+        cy.contains("Apartamento à beira da praia de Copacabana")
+        cy.get("[button-cy=cancel]").last().click();
+        cy.get("[button-cy=confirm]").click();
     });
 });

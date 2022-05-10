@@ -1,6 +1,13 @@
 describe("Teste de GUI do componente de acomodação", () => {
     beforeEach(() => {
-        cy.visit("accommodation/1");
+        cy.clearLocalStorage();
+        cy.visit("/login");
+        cy.url().should('eq', 'http://localhost:4200/login');
+        cy.get("[input-cy=email]").type("FelipoUlb@gmail.com");
+        cy.get("[input-cy=password]").type("222");
+        cy.get("[button-cy=logar]").click();
+        cy.wait(2000);
+        cy.visit("accommodation/0a42c4d2-2112-4b0a-a65d-7df4cea1f66c");
     });
 
     it("Deve gerar uma mensagem de erro ao tentar submeter uma data vazia", () => {
@@ -29,6 +36,6 @@ describe("Teste de GUI do componente de acomodação", () => {
         cy.contains('27').click();
         cy.get("[data-cy=total]").should("be.visible");
         cy.get("[button-cy=renting]").click();
-        cy.url().should('eq', 'http://localhost:4200/accommodation/1/payment?guests=1&start=2022-05-25T03:00:00.000Z&end=2022-05-27T03:00:00.000Z')
+        cy.url().should('eq', 'http://localhost:4200/accommodation/0a42c4d2-2112-4b0a-a65d-7df4cea1f66c/payment?guests=1&start=2022-05-25T03:00:00.000Z&end=2022-05-27T03:00:00.000Z')
     });
 });
