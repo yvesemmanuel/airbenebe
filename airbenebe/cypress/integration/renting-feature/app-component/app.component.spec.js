@@ -9,13 +9,13 @@ describe("Teste de GUI do componente de acomodação", () => {
     });
 
     it("Entrando na tela de login", () => {
-        cy.get("[data-cy=loginBtn]").click();
+        cy.get("[button-cy=login]").click();
         cy.contains("Login");
     });
 
     it("Entrando na tela de register", () => {
-        cy.get("[data-cy=registerBtn]").click();
-        cy.contains("Register");
+        cy.get("[button-cy=register]").click();
+        cy.contains("Registrar");
     });
 
  
