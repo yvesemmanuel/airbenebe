@@ -1,6 +1,18 @@
 
     <div class="main">
         <div class="main_content">
+            <div fxLayoutAlign="center center" fxLayoutGap="10px">
+                <div fxLayout="column" style="width: 80%">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Filtrar por cidade</mat-label>
+                        <input matInput placeholder="Ex: Recife" [(ngModel)]="city" name="city">
+                    </mat-form-field>
+                    <div fxFlexAlign="end" fxLayoutGap="5px">
+                        <button mat-raised-button color="primary" (click)="citySearch()">Pesquisar</button>
+                        <button mat-raised-button (click)="clearSearch()">Limpar</button>
+                    </div>
+                </div>
+            </div>
             <h3>Foram listadas {{ accommodations.length > 1 ? accommodations.length + ' acomodações' :
                 accommodations.length + ' acomodação' }}</h3>
             <mat-divider></mat-divider> 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'airbenebe';
   isLogged: boolean = false;
   hideHeader: boolean = false;
@@ -16,12 +16,9 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(routerEvent => {
       if (routerEvent instanceof NavigationEnd) {
         this.hideHeader = this.router.url == '/login' || this.router.url == '/register';
+        this.isLogged = window.localStorage.getItem("loggedID") != null;
       }
     });
-  }
-
-  ngOnInit(): void {
-    this.isLogged = window.localStorage.getItem("loggedID") != null;
   }
 
   logout(){
