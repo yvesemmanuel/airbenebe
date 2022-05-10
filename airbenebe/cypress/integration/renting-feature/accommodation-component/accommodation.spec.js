@@ -1,5 +1,9 @@
 describe("Teste de GUI do componente de acomodação", () => {
     beforeEach(() => {
+        cy.visit("http://localhost:4200/login");
+        cy.get('[data-cy=email-input]').type('FelipoUlb@gmail.com');
+        cy.get('[data-cy=senha-input]').type('222');
+        cy.get('[data-cy=submitBtn]').click();
         cy.visit("accommodation/1");
     });
 

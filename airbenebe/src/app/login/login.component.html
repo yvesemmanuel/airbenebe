@@ -10,20 +10,20 @@
                 <div class="container" fxLayout="column">
                     <mat-form-field appearance="outline">
                         <mat-label for="email">Email</mat-label>
-                        <input formControlName="email" matInput type="text" placeholder="Email do Usuário" name="email" required>
+                        <input formControlName="email" matInput type="text" placeholder="Email do Usuário" name="email" data-cy="email-input" required>
                         <mat-error>Por favor, insira seu e-mail!</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Senha</mat-label>
-                        <input placeholder="Senha" formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+                        <input placeholder="Senha" formControlName="password" matInput [type]="hide ? 'password' : 'text'" data-cy="senha-input" required>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
                           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                         <mat-error>Por favor, insira sua senha!</mat-error>
                     </mat-form-field>
 
-                    <button class="submit-btn" type="submit" (click)="login()">Entrar</button>
+                    <button class="submit-btn" type="submit" (click)="login()" data-cy="submitBtn">Entrar</button>
                     <p class="error" *ngIf="invalidUser">
                         Nome de usuário ou senha incorretos.
                     </p>
