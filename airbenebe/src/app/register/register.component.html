@@ -1,30 +1,54 @@
 <body>
     <div class="main-container">
 
-        <form action="#" method="post">
-
-            <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="email" placeholder="Email do Usuário (Obrigatório)" name="email">
-
-                <label for="nome"><b>Nome Completo</b></label>
-                <input type="text" placeholder="Nome do Usuário (Obrigatório)" name="username" >
-
-                <label for="password"><b>Senha</b></label>
-                <input type="password" placeholder="Senha do Usuário (Obrigatório)" name="password" >
-
-                <label for="password"><b>Confirmar Senha</b></label>
-                <input type="password" placeholder="Confirmar Senha do Usuário (Obrigatório)" name="password" >
-
-                <button type="submit" >Cadastrar</button>
-                <label>
-                <input type="checkbox" checked="checked" name="accept-terms" >Aceito os termos de Uso
-                </label>
+        <mat-card>
+            <div style="text-align:center">
+                <mat-card-title>Register</mat-card-title>
             </div>
+            <form [formGroup]="registerForm">
 
-            <div class="container" style="background-color:#f1f1f1">
-                <a routerLink=""><button type="button" id="cancelbtn" class="cancelbtn">Voltar</button></a>
-            </div>
-        </form>
+                <div class="container" fxLayout="column">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input formControlName="email" matInput type="text" placeholder="Email do Usuário" name="email" required>
+                        <mat-error>Por favor, insira seu e-mail!</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input formControlName="name" matInput type="text" placeholder="Nome do Usuário" required>
+                        <mat-error>Por favor, insira seu nome!</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input placeholder="Senha" formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>Por favor, insira sua senha!</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Confirmar Senha</mat-label>
+                        <input placeholder="Senha" formControlName="password_confirmation" matInput [type]="hide_confirmation ? 'password' : 'text'" required>
+                        <button mat-icon-button matSuffix (click)="hide_confirmation = !hide_confirmation" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide_confirmation">
+                          <mat-icon>{{hide_confirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>Por favor, confirme sua senha!</mat-error>
+                    </mat-form-field>
+
+                    <button class="submit-btn" type="submit" (click)="register()">Entrar</button>
+                    <!-- <p class="error" *ngIf="invalidUser">
+                        Nome de usuário ou senha incorretos.
+                    </p> -->
+                </div>
+            </form>
+
+            <mat-card-footer style="background-color:#f1f1f1" class="footer">
+                <a routerLink=""><button mat-raised-button type="button" class="cancelbtn">Voltar</button></a>
+            </mat-card-footer>
+
+        </mat-card>
     </div>
 </body>

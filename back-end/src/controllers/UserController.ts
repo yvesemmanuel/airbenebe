@@ -9,14 +9,15 @@ import UpdateUserService from '../services/user/UpdateUserService';
 
 class UserController {
     public async create(request: Request, response: Response): Promise<Response> {
-        const { name, email, password } = request.body;
+        const { name, email, password, password_confirmation } = request.body;
 
         const createUser = new CreateUserService();
 
         const data = createUser.execute({
             name,
             email,
-            password
+            password,
+            password_confirmation
         });
 
         if (data.error) {
