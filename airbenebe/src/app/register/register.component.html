@@ -3,7 +3,7 @@
 
         <mat-card>
             <div style="text-align:center">
-                <mat-card-title>Register</mat-card-title>
+                <mat-card-title>Registrar</mat-card-title>
             </div>
             <form [formGroup]="registerForm">
 
@@ -36,12 +36,12 @@
                           <mat-icon>{{hide_confirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                         <mat-error>Por favor, confirme sua senha!</mat-error>
+                        <!-- <p class="error" *ngIf="confirmPassword">
+                        As senhas não são iguais.
+                    </p> -->
                     </mat-form-field>
 
-                    <button class="submit-btn" type="submit" (click)="register()">Entrar</button>
-                    <!-- <p class="error" *ngIf="invalidUser">
-                        Nome de usuário ou senha incorretos.
-                    </p> -->
+                    <button class="submit-btn" type="submit" (click)="register()">Cadastrar</button>
                 </div>
             </form>
 
