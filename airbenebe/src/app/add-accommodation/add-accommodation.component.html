@@ -6,14 +6,14 @@
         <ng-template matStepLabel>Tipo de espaço que você vai hospedar</ng-template>
         <mat-form-field appearance="outline">
           <mat-label>Tipo de Imóvel</mat-label>
-          <mat-select formControlName="firstCtrl" required>
+          <mat-select formControlName="firstCtrl" required input-cy="type">
             <mat-option *ngFor=" let Imovel of Imoveis" [value]="Imovel.value">
               {{Imovel.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <div>
-          <button mat-button matStepperNext>Avançar</button>
+          <button mat-button matStepperNext button-cy="next1">Avançar</button>
         </div>
       </form>
     </mat-step>
@@ -23,25 +23,21 @@
         <div class="Rua_num">
           <mat-form-field appearance="outline">
             <mat-label>Endereço</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. Rua Castro Alves"
-                  required>
-            
+            <input matInput formControlName="secondCtrl" placeholder="Ex. Rua Castro Alves" required input-cy="street">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Número</mat-label>
-            <input matInput formControlName="thirdCtrl" type="number" placeholder="Ex. 45"
-                  required>
+            <input matInput formControlName="thirdCtrl" type="number" placeholder="Ex. 45" required input-cy="number">
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Cidade</mat-label>
-            <input matInput formControlName="fourthCtrl" placeholder="Ex. Fortaleza"
-                  required>
+            <input matInput formControlName="fourthCtrl" placeholder="Ex. Fortaleza" required input-cy="city">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Estado</mat-label>
-            <mat-select formControlName="fifthCtrl" required>
+            <mat-select formControlName="fifthCtrl" required input-cy="state">
               <mat-option *ngFor=" let Estado of Estados" [value]="Estado.value">
                 {{Estado.viewValue}}
               </mat-option>
@@ -51,14 +47,13 @@
         <div>
           <mat-form-field appearance="outline">
             <mat-label>CEP</mat-label>
-            <input matInput #cep type="text" formControlName="sixthCtrl" placeholder="Ex. 50615-330"
-                  required maxlength="9" minlength="9">
+            <input matInput #cep type="text" formControlName="sixthCtrl" placeholder="Ex. 50615-330" required maxlength="9" minlength="9" input-cy="cep">
             <mat-hint align="end">{{cep.value.length}} / 9</mat-hint>
           </mat-form-field>
         </div>
         <div>
           <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Avançar</button>
+          <button mat-button matStepperNext button-cy="next2">Avançar</button>
         </div>
       </form>
     </mat-step>
@@ -68,27 +63,24 @@
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Hóspedes</mat-label>
-            <input matInput formControlName="seventhCtrl" type="number" placeholder="N° de Hóspedes"
-                  required>
+            <input matInput formControlName="seventhCtrl" type="number" placeholder="N° de Hóspedes" required input-cy="guests">
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Quartos</mat-label>
-            <input matInput formControlName="eigthCtrl" type="number" placeholder="N° de Quartos"
-                  required>
+            <input matInput formControlName="eigthCtrl" type="number" placeholder="N° de Quartos" required input-cy="rooms">
           </mat-form-field>
         </div>
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Banheiros</mat-label>
-            <input matInput formControlName="ninethCtrl" type="number" placeholder="N° de Banheiros"
-                  required>
+            <input matInput formControlName="ninethCtrl" type="number" placeholder="N° de Banheiros" required input-cy="bathrooms">
           </mat-form-field>
         </div>
         <div>
           <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Avançar</button>
+          <button mat-button matStepperNext button-cy="next3">Avançar</button>
         </div>
       </form>
     </mat-step>
@@ -96,10 +88,10 @@
       <form [formGroup]="fourthFormGroup">
         <ng-template matStepLabel>Vamos adicionar algumas fotos do seu espaço?</ng-template>
         
-        <input type="file" formControlName="fileCtrl"  placeholder="Selecionar Fotos" multiple required accept="image/*" (input)="onfileselected($event)">
+        <input type="file" formControlName="fileCtrl"  placeholder="Selecionar Fotos" multiple required accept="image/*" (input)="onfileselected($event)" input-cy="images">
         <div>
           <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Avançar</button>
+          <button mat-button matStepperNext button-cy="next4">Avançar</button>
         </div>
       </form>
     </mat-step>
@@ -109,27 +101,26 @@
         <div>
           <mat-form-field appearance="outline">
               <mat-label>Definir seu preço</mat-label>
-              <input matInput formControlName="tenthCtrl" type="number" placeholder="Valor do Ímovel"
-                        required>
+              <input matInput formControlName="tenthCtrl" type="number" placeholder="Valor do Ímovel" required input-cy="price">
           </mat-form-field>
         </div>
         <div>   
           <mat-form-field appearance="outline">
             <mat-label>Crie seu Título</mat-label>
-            <textarea matInput #title formControlName="eleventhCtrl" maxlength="50"required placeholder="Ex. Apartamento adorável"></textarea>
+            <textarea matInput #title formControlName="eleventhCtrl" maxlength="50"required placeholder="Ex. Apartamento adorável" input-cy="title"></textarea>
             <mat-hint align="end">{{title.value.length}} / 50</mat-hint>
           </mat-form-field>
         </div>
         <div>    
           <mat-form-field appearance="outline">
             <mat-label>Crie sua descrição</mat-label>
-            <textarea matInput #disc formControlName="twelvethCtrl" maxlength="500"required placeholder="Ex. Fique à vontade com conforto neste lugar espaçoso."></textarea>
+            <textarea matInput #disc formControlName="twelvethCtrl" maxlength="500"required placeholder="Ex. Fique à vontade com conforto neste lugar espaçoso." input-cy="description"></textarea>
             <mat-hint align="end">{{disc.value.length}} / 500</mat-hint>
           </mat-form-field>
         </div>  
         <div>
           <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-raised-button color="primary">Finalizar</button>
+          <button mat-raised-button color="primary" button-cy="finish">Finalizar</button>
         </div>
 
       </form>

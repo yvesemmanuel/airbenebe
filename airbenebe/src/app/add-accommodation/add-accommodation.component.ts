@@ -67,7 +67,7 @@ export class AddAccommodationComponent implements OnInit {
     thirdCtrl: new FormControl("", [Validators.required]),
     fourthCtrl: new FormControl("", [Validators.required]),
     fifthCtrl: new FormControl("", [Validators.required]),
-    sixthCtrl: new FormControl("", [Validators.required])
+    sixthCtrl: new FormControl("", [Validators.required, Validators.pattern("[\\d]{5}\-[\\d]{3}")])
   });
 
   thirdFormGroup = new FormGroup({
