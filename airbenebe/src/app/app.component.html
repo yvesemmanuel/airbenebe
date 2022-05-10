@@ -10,14 +10,14 @@
     </div>
 
     <div *ngIf="!isLogged" class="user-options" fxLayoutGap="15px" fxShow="false" fxShow.gt-sm>
-        <button mat-raised-button class="user-btn" routerLink="/login" data-cy="loginBtn">Entrar</button>
-        <button mat-raised-button class="user-btn" routerLink="/register" data-cy="registerBtn">Cadastrar</button>
+        <button mat-raised-button class="user-btn" routerLink="/login" button-cy="login">Entrar</button>
+        <button mat-raised-button class="user-btn" routerLink="/register">Cadastrar</button>
     </div>
 
     <button *ngIf="!isLogged" mat-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
     </button>
-    <button *ngIf="isLogged" mat-raised-button class="logged-menu" [matMenuTriggerFor]="menu">
+    <button *ngIf="isLogged" mat-raised-button class="logged-menu" [matMenuTriggerFor]="menu" button-cy="menu">
         <div fxLayoutGap="6px" fxLayoutAlign="center center">
             <mat-icon>menu</mat-icon>
             <mat-icon class="account-icon">account_circle</mat-icon>
@@ -41,7 +41,7 @@
             <button mat-menu-item routerLink="/add-accommodation">Hospede seu imóvel</button>
         </div>
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="" (click)="logout()">Sair</button>
+        <button mat-menu-item routerLink="" (click)="logout()" button-cy="logout">Sair</button>
     </div>
 </mat-menu>
 

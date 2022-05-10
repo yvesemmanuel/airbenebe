@@ -23,7 +23,6 @@ export class UserAccommodationsComponent implements OnInit {
     this.accommodationService
       .getUserAccommodations(id)
       .subscribe((accommodations) => {
-        console.log(accommodations)
         this.accommodations = accommodations;
       });
   }
