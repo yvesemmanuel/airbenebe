@@ -11,7 +11,7 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
   <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
-    <button mat-raised-button (click)="changeDate()" color='primary'>Confirmar</button>
+    <button mat-raised-button (click)="changeDate()" color='primary' cy-button="confirmEdit">Confirmar</button>
     <button mat-raised-button (click)="clearSelection()">Limpar</button>
     <button mat-raised-button (click)="closeDialog()" color='warn'>Cancelar</button>
   </div> 
