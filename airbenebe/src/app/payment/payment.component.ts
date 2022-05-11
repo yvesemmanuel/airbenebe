@@ -9,6 +9,10 @@ import { Rental } from '../interfaces/Rental';
 import { AddRental } from '../interfaces/addinterface/AddRental';
 import { RentalService } from '../services/rentalService/rental.service';
 
+import { AddNotification } from '../interfaces/addinterface/AddNotification';
+import { NotificationService } from '../services/notificationService/notification.service';
+
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -48,33 +52,34 @@ export class PaymentComponent implements OnInit {
       Validators.pattern('\\d*')
     ]),
   });
-  
+
   constructor(
-    private accommodationService: AccommodationService, 
+    private accommodationService: AccommodationService,
     private rentalService: RentalService,
     private router: Router,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit(): void {
     this.getData();
   }
-  
+
   getData() {
     const id = String(this.route.snapshot.paramMap.get("id"));
     this.accommodationService.getAccommodation(id).subscribe(
       (accommodation) => (this.accommodation = accommodation)
     );
-    
+
     this.route.queryParams.subscribe(
-        (queryParams) => {
-          this.guests = Number(queryParams["guests"]);
-          this.start = new Date(queryParams["start"]);
-          this.end = new Date(queryParams["end"]);
-        }
+      (queryParams) => {
+        this.guests = Number(queryParams["guests"]);
+        this.start = new Date(queryParams["start"]);
+        this.end = new Date(queryParams["end"]);
+      }
     );
 
-    this.nights = (this.end.getTime() - this.start.getTime())/86400000;
+    this.nights = (this.end.getTime() - this.start.getTime()) / 86400000;
   }
 
   onSubmit() {
@@ -94,7 +99,27 @@ export class PaymentComponent implements OnInit {
       this.rentalService.addRental(rental).subscribe({
         error: err => console.log(err)
       })
-      
+
+      this.notificationService.addNotification({
+        "user_id": id_user,
+        "date": new Date().toJSON(),
+        "show_date": this.start.toJSON(),
+        "message": "Falta 1 dia para o seu check-in em " + this.accommodation.title + "!"
+      }).subscribe({
+        error: err => console.log(err)
+      });
+
+      const start = this.stringifyDate(this.start);
+      const end = this.stringifyDate(this.end);
+      this.notificationService.addNotification({
+        "user_id": this.accommodation.id_user,
+        "date": new Date().toJSON(),
+        "show_date": new Date().toJSON(),
+        "message": "Um usuário alugou " + this.accommodation.title + " do dia " + start + " até " + end + "."
+      }).subscribe({
+        error: err => console.log(err)
+      });
+
       this.router.navigate(['/myrentals']);
     }
   }

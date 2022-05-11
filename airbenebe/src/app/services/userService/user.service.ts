@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { User } from '../../interfaces/User';
+// remove it
 import { AddUser } from 'src/app/interfaces/addinterface/AddUser';
 
 @Injectable({

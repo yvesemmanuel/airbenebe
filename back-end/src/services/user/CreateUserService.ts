@@ -21,7 +21,7 @@ class CreateUserService {
         password,
         password_confirmation
     }: CreateUserType): ResponseType {
-        const userRepository = new UserRepository().getInstance()
+        const userRepository = new UserRepository().getInstance();
 
         const foundUser = userRepository.findByEmail(email);
         

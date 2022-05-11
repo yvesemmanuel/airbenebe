@@ -21,8 +21,8 @@ export class RentalComponent implements OnInit {
 
   id_user: string = "";
   accRentals: Rental[] = [];
-  rentals: any[] = []
-  accommodation!: Accommodation
+  rentals: any[] = [];
+  accommodation!: Accommodation;
 
   openEditDateDialog(data: any): any {
     const dialogRef = this.matDialog.open(EditDateDialogComponent, {
@@ -32,10 +32,10 @@ export class RentalComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => this.getRentals(this.id_user));
   }
 
-  cancelResevation(id: string): void {
+  cancelResevation(rental: any): void {
     const data = {
-      id,
-      deleteFunction: () => this.rentalService.deleteRental(id).subscribe({error: e => console.log(e)})
+      rental: rental,
+      deleteFunction: () => this.rentalService.deleteRental(rental.id).subscribe({error: e => console.log(e)})
     }
 
     const dialogRef = this.matDialog.open(ConfirmDeleteDialogComponent, {

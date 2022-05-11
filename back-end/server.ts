@@ -4,6 +4,7 @@ import cors from 'cors';
 import UserRoutes from './src/routes/User.Routes';
 import RentalRoutes from './src/routes/Rental.Routes';
 import AccommodationRoutes from './src/routes/Accommodation.Routes';
+import NotificationRoutes from './src/routes/Notifications.Routes';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(UserRoutes);
 app.use(RentalRoutes);
 app.use(AccommodationRoutes);
+app.use(NotificationRoutes);
 
 app.get("/", (_: Request, response: Response) => {
     response.json({ "ping": "pong" });

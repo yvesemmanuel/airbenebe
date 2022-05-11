@@ -12,6 +12,7 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { AccommodationDetailComponent } from './accommodation-detail/accommodation-detail.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
+import { NotificationComponent } from './notification/notification.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AddAccommodationComponent } from './add-accommodation/add-accommodation.component';
 import { ListingComponent } from './listing/listing.component';
@@ -56,7 +57,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ConfirmDeleteDialogComponent,
     AddAccommodationComponent,
     ListingComponent,
-    UserAccommodationsComponent
+    UserAccommodationsComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,

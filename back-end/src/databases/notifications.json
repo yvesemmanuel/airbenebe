@@ -1,0 +1,15 @@
+[{
+        "id": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a5ad",
+        "user_id": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
+        "message": "Mensagem para Joao",
+        "date": "2022-05-09T03:00:00.000Z",
+        "show_date": "2022-05-11T03:00:00.000Z"
+    },
+    {
+        "id": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a5fd",
+        "user_id": "945724f2-8ce3-4142-bef0-dc95d3074e45",
+        "message": "Mensagem para felipo",
+        "date": "2022-05-09T03:00:00.000Z",
+        "show_date": "2022-05-11T03:00:00.000Z"
+    }
+]
