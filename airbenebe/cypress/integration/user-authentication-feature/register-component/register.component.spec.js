@@ -1,5 +1,6 @@
 describe("Teste de GUI do componente de cadastro", () => {
     beforeEach(() => {
+        cy.clearLocalStorage();
         cy.visit("http://localhost:4200/register");
         
     });

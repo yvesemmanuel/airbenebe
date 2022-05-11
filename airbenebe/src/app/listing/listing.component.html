@@ -5,11 +5,11 @@
                 <div fxLayout="column" style="width: 80%">
                     <mat-form-field appearance="outline">
                         <mat-label>Filtrar por cidade</mat-label>
-                        <input matInput placeholder="Ex: Recife" [(ngModel)]="city" name="city">
+                        <input matInput placeholder="Ex: Recife" [(ngModel)]="city" name="city" input-cy="searchIn">
                     </mat-form-field>
                     <div fxFlexAlign="end" fxLayoutGap="5px">
-                        <button mat-raised-button color="primary" (click)="citySearch()">Pesquisar</button>
-                        <button mat-raised-button (click)="clearSearch()">Limpar</button>
+                        <button mat-raised-button color="primary" (click)="citySearch()" button-cy="searchLoc">Pesquisar</button>
+                        <button mat-raised-button (click)="clearSearch()" button-cy="clearSearch">Limpar</button>
                     </div>
                 </div>
             </div>
