@@ -18,11 +18,19 @@ class UpdateNotificationService {
 
         const updatedNotification = notificationRepository.update(id_rental, show_date);
 
-        return {
-            error: false,
-            message: "Notification's password updated successfully.",
-            data: updatedNotification,
-        };
+        if (updatedNotification) {
+            return {
+                error: false,
+                message: "Notification scheduled date updated successfully.",
+                data: updatedNotification,
+            };
+        } else {
+            return {
+                error: true,
+                message: "Notification don't exists.",
+                data: undefined,
+            };
+        }
     };
 };
 

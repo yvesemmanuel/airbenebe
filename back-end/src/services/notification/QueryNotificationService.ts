@@ -8,7 +8,7 @@ type QueryNotificationType = {
 type ResponseType = {
     error: boolean,
     message: string,
-    data: Notification[] | undefined,
+    data: Notification[],
 }
 
 class QueryNotificationService {

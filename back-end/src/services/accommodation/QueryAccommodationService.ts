@@ -21,7 +21,7 @@ type QueryAccommodationType = {
 type ResponseType = {
     error: boolean,
     message: string,
-    data: Accommodation[] | undefined,
+    data: Accommodation[],
 }
 
 class QueryAccommodationService {

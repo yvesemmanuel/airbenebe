@@ -2,48 +2,49 @@ import AccommodationRepository from '../../../repositories/AccommodationReposito
 import CreateUserService  from '../../user/CreateUserService';
 
 describe("CreateUser", () => {
-    const user_sucess = { name: "Yvão da Massa", email: "yefo@cin.ufpe.br", password: "dale", password_confirmation: "dale" };
-    const user_failed = { name: "Flipo Ubaldo", email: "flipo@cin.ufpe.br", password: "japao", password_confirmation: "japan" };
+    const userSuccess = { name: "Yvão da Massa", email: "yefo@cin.ufpe.br", password: "dale", password_confirmation: "dale" };
+    const userFail = { name: "Flipo Ubaldo", email: "flipo@cin.ufpe.br", password: "japao", password_confirmation: "japan" };
     
 
     it("User created successfully.", async () => {
         const createUser = new CreateUserService();
-        const fakeAccommodationRepository = AccommodationRepository;
 
         const res = createUser.execute({
-            name: user_sucess.name,
-            email: user_sucess.email,
-            password: user_sucess.password,
-            password_confirmation: user_sucess.password_confirmation
+            name: userSuccess.name,
+            email: userSuccess.email,
+            password: userSuccess.password,
+            password_confirmation: userSuccess.password_confirmation
         });
 
-        expect(res.error == false);
+        expect(res.error).toBeFalsy();
     })
 
     it("Given email already exists.", async () => {
         const createUser = new CreateUserService();
 
         const res = createUser.execute({
-            name: user_sucess.name,
-            email: user_sucess.email,
-            password: user_sucess.password,
-            password_confirmation: user_sucess.password_confirmation
+            name: userSuccess.name,
+            email: userSuccess.email,
+            password: userSuccess.password,
+            password_confirmation: userSuccess.password_confirmation
         });
 
-        expect(res.message === "Given email already exists.");
+        expect(res.error).toBeTruthy();
+        expect(res.message).toEqual("Given email already exists.");
     })
 
     it("Confirmation password don't match.", async () => {
         const createUser = new CreateUserService();
 
         const res = createUser.execute({
-            name: user_failed.name,
-            email: user_failed.email,
-            password: user_failed.password,
-            password_confirmation: user_failed.password_confirmation
+            name: userFail.name,
+            email: userFail.email,
+            password: userFail.password,
+            password_confirmation: userFail.password_confirmation
         });
 
-        expect(res.message === "Confirmation password don't match.");
+        expect(res.error).toBeTruthy();
+        expect(res.message).toEqual("Confirmation password don't match.");
     })
 
 

@@ -38,7 +38,7 @@ describe("CreateAccommodation", () => {
             price:accommodationSuccess.price
         });
 
-        expect(res.error === false);    
+        expect(res.error).toBeFalsy();    
     })
 
 })

@@ -2,22 +2,22 @@ import DeleteRentalService from "../../rental/DeleteRentalService";
 
 describe("DeleteRental", () => {
     const rentalSuccess = "46440d08-fd17-4761-9641-ac965adfcb49";
-    const rentalFailed = "Xurupita";
+    const rentalFail = "Xurupita";
 
-    it("City sucessfully filtered.", async () => {
+    it("Rental deleted.", async () => {
         const deleteRental = new DeleteRentalService();
 
         const res = deleteRental.execute(rentalSuccess);
 
-        expect(res.message === "Rental deleted.");    
+        expect(res.error).toBeFalsy();    
     })
 
     it("Rental don't exists.", async () => {
         const deleteRental = new DeleteRentalService();
 
-        const res = deleteRental.execute(rentalFailed);
+        const res = deleteRental.execute(rentalFail);
 
-        expect(res.message === "Rental don't exists.");    
+        expect(res.error).toBeTruthy();    
     })
 
 })

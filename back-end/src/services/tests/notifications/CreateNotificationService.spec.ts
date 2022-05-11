@@ -14,7 +14,7 @@ describe("CreateNotification", () => {
             message: notification_sucess.message
         });
 
-        expect(res.error === false);
+        expect(res.error).toBeFalsy();
     })
 
 })

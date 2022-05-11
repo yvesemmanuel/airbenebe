@@ -37,7 +37,7 @@ type QueryAccommodationType = {
 };
 
 class AccommodationRepository {
-    private accommodations: Accommodation[] =  require('../databases/accommodations.json');;
+    private accommodations: Accommodation[] =  require('../databases/accommodations.json');
     private static instance: AccommodationRepository;
 
     public create({

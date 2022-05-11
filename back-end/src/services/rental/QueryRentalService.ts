@@ -15,7 +15,7 @@ type QueryRentalType = {
 type ResponseType = {
     error: boolean,
     message: string,
-    data: Rental[] | undefined,
+    data: Rental[],
 }
 
 class QueryRentalService {

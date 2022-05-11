@@ -26,7 +26,7 @@ type QueryRentalType = {
 };
 
 class RentalRepository {
-    private rentals: Rental[] =  require('../databases/rentals.json');;
+    private rentals: Rental[] =  require('../databases/rentals.json');
     private static instance: RentalRepository;
 
     public create({
@@ -57,11 +57,11 @@ class RentalRepository {
     }
 
     public validDate(id_accommodation: string, start_date: string, end_date: string): boolean {
-        const val_start = new Date(start_date);
-        const val_end = new Date(end_date);
+        const val_start = start_date;
+        const val_end = end_date;
         for (let rental of this.rentals.filter(rental => rental.id_accommodation == id_accommodation)) {
-            const start = new Date(rental.start_date);
-            const end = new Date(rental.end_date);
+            const start = rental.start_date
+            const end = rental.end_date;
             if (((start <= val_start) && (val_start <= end)) || ((start <= val_end) && (val_end <= end))) {
               return false
             }
