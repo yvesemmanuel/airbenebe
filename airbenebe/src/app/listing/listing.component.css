@@ -98,6 +98,10 @@ h1 {
     font-weight: 200;
 }
 
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
 @media (max-width: 570px){
     .listings_item {
         flex-direction: column;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -20,7 +20,6 @@ export class AppComponent {
       }
     });
   }
-  
   logout(){
     window.localStorage.removeItem("loggedID")
     this.isLogged = false;
