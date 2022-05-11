@@ -95,6 +95,14 @@ class AccommodationRepository {
         return foundAccommodations;
     }
 
+    public findByCity(city: string): Accommodation[] {
+        const foundAccommodations = this.accommodations.filter(accommodation => {
+            return accommodation.city.toLowerCase().trim() == city.toLocaleLowerCase().trim()
+        });
+
+        return foundAccommodations;
+    }
+
     public getInstance(): AccommodationRepository {
         if (!AccommodationRepository.instance) {
             AccommodationRepository.instance = new AccommodationRepository();
