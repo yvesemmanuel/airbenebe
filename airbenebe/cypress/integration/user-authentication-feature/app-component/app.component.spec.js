@@ -5,7 +5,7 @@ describe("Teste de GUI da landing page", () => {
     });
 
     it("Retorna true se o título do texto está certo", () => {
-        cy.contains("Encontre aqui um lar para chamar de seu!");
+        cy.contains("Reserve imóveis no Airbenebe!");
     });
 
     it("Entrando na tela de login", () => {
