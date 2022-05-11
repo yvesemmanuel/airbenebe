@@ -1,4 +1,5 @@
 import Rental from '../../models/Rental';
+import FakeRentalRepository from '../../repositories/fakes/FakeRentalRepository';
 import RentalRepository from '../../repositories/RentalRepository';
 
 type QueryRentalType = {
@@ -19,6 +20,11 @@ type ResponseType = {
 }
 
 class QueryRentalService {
+
+    constructor(private rentalRepository: RentalRepository | FakeRentalRepository = new RentalRepository().getInstance()) {
+        this.rentalRepository = rentalRepository;
+    }
+
     public execute({
         id_user,
         id_accommodation,
@@ -29,9 +35,7 @@ class QueryRentalService {
         start_date,
         end_date
     }: QueryRentalType): ResponseType {
-        const rentalRepository = new RentalRepository().getInstance();
-
-        const foundRentals = rentalRepository.query({
+        const foundRentals = this.rentalRepository.query({
             id_user,
             id_accommodation,
             guests,

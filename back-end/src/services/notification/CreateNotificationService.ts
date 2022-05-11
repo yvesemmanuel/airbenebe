@@ -1,4 +1,5 @@
 import Notification from '../../models/Notification';
+import FakeNotificationRepository from '../../repositories/fakes/FakeNotificationRepository';
 import NotificationRepository from '../../repositories/NotificationRepository';
 
 type CreateNotificationType = {
@@ -16,6 +17,11 @@ type ResponseType = {
 }
 
 class CreateNotificationService {
+
+    constructor(private notificationRepository: NotificationRepository | FakeNotificationRepository = new NotificationRepository().getInstance()) {
+        this.notificationRepository = notificationRepository;
+    }
+
     public execute({
         id_user,
         id_rental,
@@ -23,9 +29,7 @@ class CreateNotificationService {
         show_date,
         message,
     }: CreateNotificationType): ResponseType {
-        const notificationRepository = new NotificationRepository().getInstance();
-
-        const notification = notificationRepository.create({
+        const notification = this.notificationRepository.create({
             id_user,
             id_rental,
             date,

@@ -1,4 +1,5 @@
 import Rental from '../../models/Rental';
+import FakeRentalRepository from '../../repositories/fakes/FakeRentalRepository';
 import RentalRepository from '../../repositories/RentalRepository';
 
 type ResponseType = {
@@ -8,10 +9,13 @@ type ResponseType = {
 }
 
 class ShowRentalService {
-    public execute(id: string): ResponseType {
-        const rentalRepository = new RentalRepository().getInstance();
 
-        const foundRental = rentalRepository.findById(id);
+    constructor(private rentalRepository: RentalRepository | FakeRentalRepository = new RentalRepository().getInstance()) {
+        this.rentalRepository = rentalRepository;
+    }
+
+    public execute(id: string): ResponseType {
+        const foundRental = this.rentalRepository.findById(id);
 
         if (foundRental) {
             return {

@@ -1,15 +1,17 @@
+import FakeUserRepository from '../../../repositories/fakes/FakeUserRepository';
 import LoginService  from '../../user/LoginService';
+import CreateUserService from '../../user/CreateUserService';
 
 describe("LoginUser", () => {
     const userSuccess = { email: "FelipoUlb@gmail.com", password: "222"};
     
     const userFail = { email: "fipo@cin.ufpe.br", password: "222"};
 
-    const credentialSuccess = { email: "FelipoUlb@gmail.com", password: "japao"};
+    const credentialFail = { email: "FelipoUlb@gmail.com", password: "japao"};
     
-
     it("User don't exists.", async () => {
-        const LoginUser = new LoginService();
+        const fakeUserRepository = new FakeUserRepository();
+        const LoginUser = new LoginService(fakeUserRepository);
 
         const res = LoginUser.execute({
             email: userFail.email,
@@ -21,11 +23,20 @@ describe("LoginUser", () => {
     })
 
     it("User credentials are incorrect.", async () => {
-        const LoginUser = new LoginService();
+        const fakeUserRepository = new FakeUserRepository();
+        const createUser = new CreateUserService(fakeUserRepository);
+        const LoginUser = new LoginService(fakeUserRepository);
+
+        createUser.execute({
+            name: "Felipo",
+            email: credentialFail.email,
+            password: credentialFail.password,
+            password_confirmation: credentialFail.password
+        });
 
         const res = LoginUser.execute({
-            email: credentialSuccess.email,
-            password: credentialSuccess.password
+            email: credentialFail.email,
+            password: "8888888"
         });
 
         expect(res.error).toBeTruthy();
@@ -33,11 +44,20 @@ describe("LoginUser", () => {
     })
 
     it("User sucessfully Login.", async () => {
-        const LoginUser = new LoginService();
+        const fakeUserRepository = new FakeUserRepository();
+        const createUser = new CreateUserService(fakeUserRepository);
+        const LoginUser = new LoginService(fakeUserRepository);
+
+        createUser.execute({
+            name: "José",
+            email: userSuccess.email,
+            password: userSuccess.password,
+            password_confirmation: userSuccess.password
+        });
 
         const res = LoginUser.execute({
-            email: userSuccess.email,
-            password: userSuccess.password
+            email: userSuccess .email,
+            password: userSuccess .password
         });
 
         expect(res.error).toBeFalsy();

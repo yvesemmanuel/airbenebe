@@ -1,4 +1,5 @@
 import Rental from "../../models/Rental";
+import FakeRentalRepository from "../../repositories/fakes/FakeRentalRepository";
 import RentalRepository from "../../repositories/RentalRepository";
 
 type ResponseType = {
@@ -14,10 +15,13 @@ type RequestType = {
 }
 
 class UpdateRentalService {
-    public execute({ id, newStart, newEnd }: RequestType): ResponseType {
-        const rentalRepository = new RentalRepository().getInstance()
 
-        const foundRental = rentalRepository.findById(id);
+    constructor(private rentalRepository: RentalRepository | FakeRentalRepository = new RentalRepository().getInstance()) {
+        this.rentalRepository = rentalRepository;
+    }
+
+    public execute({ id, newStart, newEnd }: RequestType): ResponseType {
+        const foundRental = this.rentalRepository.findById(id);
 
         if (!foundRental) {
             return {
@@ -27,7 +31,7 @@ class UpdateRentalService {
             }
         }
 
-        const updatedRental = rentalRepository.updateDates(id, newStart, newEnd);
+        const updatedRental = this.rentalRepository.updateDates(id, newStart, newEnd);
 
         return {
             error: false,

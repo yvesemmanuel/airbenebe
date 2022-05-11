@@ -1,4 +1,5 @@
 import User from '../../models/User';
+import FakeUserRepository from '../../repositories/fakes/FakeUserRepository';
 import UserRepository from '../../repositories/UserRepository';
 
 type LoginType = {
@@ -13,10 +14,13 @@ type ResponseType = {
 }
 
 class LoginService {
-    public execute({ email, password }: LoginType): ResponseType {
-        const userRepository = new UserRepository().getInstance();
 
-        const foundUser = userRepository.findByEmail(email);
+    constructor(private userRepository: UserRepository | FakeUserRepository = new UserRepository().getInstance()) {
+        this.userRepository = userRepository;
+    }
+
+    public execute({ email, password }: LoginType): ResponseType {
+        const foundUser = this.userRepository.findByEmail(email);
 
         if (!foundUser) {
             return {
@@ -26,7 +30,7 @@ class LoginService {
             };
         }
 
-        const matchCredentials = userRepository.login(email, password);
+        const matchCredentials = this.userRepository.login(email, password);
 
         if (matchCredentials) {
             return {

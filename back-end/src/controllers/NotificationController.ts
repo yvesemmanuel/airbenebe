@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 
 import CreateNotificationService from '../services/notification/CreateNotificationService';
 import QueryNotificationService from '../services/notification/QueryNotificationService';
-import ShowNotificationService from '../services/notification/ShowNotificationService';
 import UpdateNotificationService from '../services/notification/UpdateNotificationService';
 
 class NotificationController {
@@ -25,21 +24,6 @@ class NotificationController {
 
         return response.status(201).json(data.data);
     };
-
-    public async show(request: Request, response: Response): Promise<Response> {
-        const { id } = request.params;
-
-        const showNotification = new ShowNotificationService();
-
-        const data = showNotification.execute(id);
-
-        if (data.error) {
-            return response.status(404).json({ "message": data.message });
-        }
-
-        return response.status(200).json(data.data);
-    };
-
 
     public async index(request: Request, response: Response): Promise<Response> {
         const id_user = request.query.id_user as string;

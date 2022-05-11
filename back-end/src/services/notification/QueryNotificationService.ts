@@ -1,4 +1,5 @@
 import Notification from '../../models/Notification';
+import FakeNotificationRepository from '../../repositories/fakes/FakeNotificationRepository';
 import NotificationRepository from '../../repositories/NotificationRepository';
 
 type QueryNotificationType = {
@@ -12,12 +13,15 @@ type ResponseType = {
 }
 
 class QueryNotificationService {
+
+    constructor(private notificationRepository: NotificationRepository | FakeNotificationRepository = new NotificationRepository().getInstance()) {
+        this.notificationRepository = notificationRepository;
+    }
+
     public execute({
         id_user,
     }: QueryNotificationType): ResponseType {
-        const notificationRepository = new NotificationRepository().getInstance();
-
-        const foundNotifications = notificationRepository.query({
+        const foundNotifications = this.notificationRepository.query({
             id_user
         });
 

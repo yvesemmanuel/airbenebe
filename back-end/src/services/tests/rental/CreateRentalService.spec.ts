@@ -1,3 +1,4 @@
+import FakeRentalRepository from "../../../repositories/fakes/FakeRentalRepository";
 import CreateRentalService from "../../rental/CreateRentalService"
 
 describe("CreateRental", () => {
@@ -23,25 +24,10 @@ describe("CreateRental", () => {
         end_date: "2022-05-13T03:00:00.000Z"
     };
 
-    it("Date already reserved.", async () => {
-        const createRental = new CreateRentalService();
-
-        const res = createRental.execute({
-            id_user: rentalFail.id_user,
-            id_accommodation: rentalFail.id_accommodation,
-            guests: rentalFail.guests,
-            price: rentalFail.price,
-            nights: rentalFail.nights,
-            purchase_date: rentalFail.purchase_date,
-            start_date: rentalFail.start_date,
-            end_date: rentalFail.end_date
-        });
-
-        expect(res.error).toBeTruthy();
-    })
-
+    
     it("Rental created successfully.", async () => {
-        const createRental = new CreateRentalService();
+        const fakeRentalRepository = new FakeRentalRepository();
+        const createRental = new CreateRentalService(fakeRentalRepository);
 
         const res = createRental.execute({
             id_user: rentalSuccess.id_user,
@@ -55,5 +41,34 @@ describe("CreateRental", () => {
         });
 
         expect(res.error).toBeFalsy();
+    })
+
+    it("Date already reserved.", async () => {
+        const fakeRentalRepository = new FakeRentalRepository();
+        const createRental = new CreateRentalService(fakeRentalRepository);
+
+        createRental.execute({
+            id_user: rentalFail.id_user,
+            id_accommodation: rentalFail.id_accommodation,
+            guests: rentalFail.guests,
+            price: rentalFail.price,
+            nights: rentalFail.nights,
+            purchase_date: rentalFail.purchase_date,
+            start_date: rentalFail.start_date,
+            end_date: rentalFail.end_date
+        });
+
+        const res = createRental.execute({
+            id_user: "1245",
+            id_accommodation: rentalFail.id_accommodation,
+            guests: 4,
+            price: 420,
+            nights: 2,
+            purchase_date: "2022-05-08T14:48:25.015Z",
+            start_date: rentalFail.start_date,
+            end_date: rentalFail.end_date
+        });
+
+        expect(res.error).toBeTruthy();
     })
 })

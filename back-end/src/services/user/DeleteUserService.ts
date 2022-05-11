@@ -1,3 +1,4 @@
+import FakeUserRepository from '../../repositories/fakes/FakeUserRepository';
 import UserRepository from '../../repositories/UserRepository';
 
 type ResponseType = {
@@ -6,13 +7,16 @@ type ResponseType = {
 }
 
 class DeleteUserService {
-    public execute(id: string): ResponseType {
-        const userRepository = new UserRepository().getInstance();
 
-        const foundUser = userRepository.findById(id);
+    constructor(private userRepository: UserRepository | FakeUserRepository = new UserRepository().getInstance()) {
+        this.userRepository = userRepository;
+    }
+
+    public execute(id: string): ResponseType {
+        const foundUser = this.userRepository.findById(id);
 
         if (foundUser) {
-            userRepository.delete(id);
+            this.userRepository.delete(id);
 
             return {
                 error: false,

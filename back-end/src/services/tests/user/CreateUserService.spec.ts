@@ -1,4 +1,4 @@
-import AccommodationRepository from '../../../repositories/AccommodationRepository';
+import FakeUserRepository from '../../../repositories/fakes/FakeUserRepository';
 import CreateUserService  from '../../user/CreateUserService';
 
 describe("CreateUser", () => {
@@ -7,7 +7,8 @@ describe("CreateUser", () => {
     
 
     it("User created successfully.", async () => {
-        const createUser = new CreateUserService();
+        const fakeUserRepository = new FakeUserRepository();
+        const createUser = new CreateUserService(fakeUserRepository);
 
         const res = createUser.execute({
             name: userSuccess.name,
@@ -20,8 +21,16 @@ describe("CreateUser", () => {
     })
 
     it("Given email already exists.", async () => {
-        const createUser = new CreateUserService();
+        const fakeUserRepository = new FakeUserRepository();
+        const createUser = new CreateUserService(fakeUserRepository);
 
+        createUser.execute({
+            name: userSuccess.name,
+            email: userSuccess.email,
+            password: userSuccess.password,
+            password_confirmation: userSuccess.password_confirmation
+        });
+        
         const res = createUser.execute({
             name: userSuccess.name,
             email: userSuccess.email,
@@ -34,7 +43,8 @@ describe("CreateUser", () => {
     })
 
     it("Confirmation password don't match.", async () => {
-        const createUser = new CreateUserService();
+        const fakeUserRepository = new FakeUserRepository();
+        const createUser = new CreateUserService(fakeUserRepository);
 
         const res = createUser.execute({
             name: userFail.name,

@@ -1,4 +1,5 @@
 import Accommodation from '../../models/Accommodation';
+import FakeAccommodationRepository from '../../repositories/fakes/FakeAccommodationRepository';
 import AccommodationRepository from '../../repositories/AccommodationRepository';
 
 type CreateAccommodationType = {
@@ -21,10 +22,15 @@ type CreateAccommodationType = {
 type ResponseType = {
     error: boolean,
     message: string,
-    data: Accommodation | undefined,
+    data: Accommodation,
 }
 
 class CreateAccommodationService {
+
+    constructor(private accommodationRepository: AccommodationRepository | FakeAccommodationRepository = new AccommodationRepository().getInstance()) {
+        this.accommodationRepository = accommodationRepository;
+    }
+
     public execute({
         id_user,
         title,
@@ -41,9 +47,8 @@ class CreateAccommodationService {
         images,
         price
     }: CreateAccommodationType): ResponseType {
-        const accommodationRepository = new AccommodationRepository().getInstance()
 
-        const accommodation = accommodationRepository.create({
+        const accommodation = this.accommodationRepository.create({
             id_user,
             title,
             description,

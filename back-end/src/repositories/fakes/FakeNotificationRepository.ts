@@ -1,6 +1,5 @@
 import { v4 } from 'uuid';
-
-import Notification from '../models/Notification';
+import Notification from '../../models/Notification';
 
 type CreateNotificationType = {
     id_user: string;
@@ -15,9 +14,9 @@ type QueryNotificationType = {
     [key: string]: string;
 };
 
-class NotificationRepository {
-    private notifications: Notification[] = require('../databases/notifications.json');
-    private static instance: NotificationRepository;
+class FakeNotificationRepository {
+    private notifications: Notification[] = [];
+    private static instance: FakeNotificationRepository;
 
     public create({
         id_user,
@@ -61,12 +60,12 @@ class NotificationRepository {
         return undefined;
     }
 
-    public getInstance(): NotificationRepository {
-        if (!NotificationRepository.instance) {
-            NotificationRepository.instance = new NotificationRepository();
+    public getInstance(): FakeNotificationRepository {
+        if (!FakeNotificationRepository.instance) {
+            FakeNotificationRepository.instance = new FakeNotificationRepository();
         }
 
-        return NotificationRepository.instance;
+        return FakeNotificationRepository.instance;
     }
 
     public checkDate(string_date: string): boolean {
@@ -77,4 +76,4 @@ class NotificationRepository {
 
 }
 
-export default NotificationRepository
+export default FakeNotificationRepository

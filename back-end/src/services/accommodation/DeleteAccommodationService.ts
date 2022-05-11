@@ -1,4 +1,6 @@
+import FakeAccommodationRepository from '../../repositories/fakes/FakeAccommodationRepository';
 import AccommodationRepository from '../../repositories/AccommodationRepository';
+
 
 type ResponseType = {
     error: boolean,
@@ -6,13 +8,16 @@ type ResponseType = {
 }
 
 class DeleteAccommodationService {
-    public execute(id: string): ResponseType {
-        const accommodationRepository = new AccommodationRepository().getInstance();
 
-        const foundAccommodation = accommodationRepository.findById(id);
+    constructor(private accommodationRepository: AccommodationRepository | FakeAccommodationRepository = new AccommodationRepository().getInstance()) {
+        this.accommodationRepository = accommodationRepository;
+    }
+
+    public execute(id: string): ResponseType {
+        const foundAccommodation = this.accommodationRepository.findById(id);
 
         if (foundAccommodation) {
-            accommodationRepository.delete(id);
+            this.accommodationRepository.delete(id);
 
             return {
                 error: false,

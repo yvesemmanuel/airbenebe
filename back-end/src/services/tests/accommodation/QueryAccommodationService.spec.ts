@@ -1,8 +1,8 @@
 import FakeAccommodationRepository from "../../../repositories/fakes/FakeAccommodationRepository";
-import CityAccommodationService from "../../accommodation/CityAccommodationService";
 import CreateAccommodationService from "../../accommodation/CreateAccommodationService";
+import QueryAccommodationService from "../../accommodation/QueryAccommodationService";
 
-describe("CityAccommodation", () => {
+describe("QueryAccommodation", () => {
     const accommodationSuccess = {
         id_user: "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
         title: "Teste 1",
@@ -20,14 +20,44 @@ describe("CityAccommodation", () => {
         price: 350
     };
 
-    const cityFail = "Xurupita";
+    const QuerySuccess = {
+        id_user: "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
+        title: undefined as unknown as string,
+        description: undefined as unknown as string,
+        type: undefined as unknown as string,
+        state: undefined as unknown as string,
+        city: undefined as unknown as string,
+        street: undefined as unknown as string,
+        number: undefined as unknown as string,
+        zipcode: undefined as unknown as string,
+        capacity: undefined as unknown as string,
+        rooms: undefined as unknown as string,
+        bathrooms: undefined as unknown as string,
+        price: undefined as unknown as string
+    };
 
-    it("City sucessfully filtered.", async () => {
+    const QueryFail = {
+        id_user: "aaaaa",
+        title: undefined as unknown as string,
+        description: undefined as unknown as string,
+        type: undefined as unknown as string,
+        state: undefined as unknown as string,
+        city: undefined as unknown as string,
+        street: undefined as unknown as string,
+        number: undefined as unknown as string,
+        zipcode: undefined as unknown as string,
+        capacity: undefined as unknown as string,
+        rooms: undefined as unknown as string,
+        bathrooms: undefined as unknown as string,
+        price: undefined as unknown as string
+    };
+
+    it("User accommodations sucessfully found.", async () => {
         const fakeAccommodationRepository = new FakeAccommodationRepository();
         const createAccommodation = new CreateAccommodationService(fakeAccommodationRepository);
-        const cityAccommodation = new CityAccommodationService(fakeAccommodationRepository);
+        const QueryAccommodation = new QueryAccommodationService(fakeAccommodationRepository);
 
-        const res = createAccommodation.execute({
+        createAccommodation.execute({
             id_user: accommodationSuccess.id_user,
             title: accommodationSuccess.title,
             description: accommodationSuccess.description,
@@ -44,18 +74,18 @@ describe("CityAccommodation", () => {
             price:accommodationSuccess.price
         });
 
-        const resCity = cityAccommodation.execute(res.data.city);
+        const query = QueryAccommodation.execute(QuerySuccess);
 
-        expect(resCity.error).toBeFalsy();    
-        expect(resCity.data.length).toEqual(1);   
+        expect(query.error).toBeFalsy()
+        expect(query.data.length).toEqual(1);    
     })
 
-    it("City not filtered.", async () => {
+    it("User accommodations not found.", async () => {
         const fakeAccommodationRepository = new FakeAccommodationRepository();
         const createAccommodation = new CreateAccommodationService(fakeAccommodationRepository);
-        const cityAccommodation = new CityAccommodationService(fakeAccommodationRepository);
+        const QueryAccommodation = new QueryAccommodationService(fakeAccommodationRepository);
 
-        const res = createAccommodation.execute({
+        createAccommodation.execute({
             id_user: accommodationSuccess.id_user,
             title: accommodationSuccess.title,
             description: accommodationSuccess.description,
@@ -72,10 +102,10 @@ describe("CityAccommodation", () => {
             price:accommodationSuccess.price
         });
 
-        const resCity = cityAccommodation.execute(cityFail);
+        const query = QueryAccommodation.execute(QueryFail);
 
-        expect(resCity.error).toBeFalsy();    
-        expect(resCity.data.length).toEqual(0);   
+        expect(query.error).toBeFalsy()
+        expect(query.data.length).toEqual(0);    
     })
 
 })

@@ -1,4 +1,5 @@
 import User from "../../models/User";
+import FakeUserRepository from "../../repositories/fakes/FakeUserRepository";
 import UserRepository from "../../repositories/UserRepository";
 
 type ResponseType = {
@@ -13,10 +14,13 @@ type RequestType = {
 }
 
 class UpdateUserService {
-    public execute({ id, newPassword }: RequestType): ResponseType {
-        const userRepository = new UserRepository().getInstance()
 
-        const foundUser = userRepository.findById(id);
+    constructor(private userRepository: UserRepository | FakeUserRepository = new UserRepository().getInstance()) {
+        this.userRepository = userRepository;
+    }
+
+    public execute({ id, newPassword }: RequestType): ResponseType {
+        const foundUser = this.userRepository.findById(id);
 
         if (!foundUser) {
             return {
@@ -26,7 +30,7 @@ class UpdateUserService {
             }
         }
 
-        const updatedUser = userRepository.update(id, newPassword);
+        const updatedUser = this.userRepository.update(id, newPassword);
 
         return {
             error: false,

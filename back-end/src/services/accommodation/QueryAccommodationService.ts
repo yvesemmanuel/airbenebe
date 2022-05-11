@@ -1,5 +1,7 @@
 import Accommodation from '../../models/Accommodation';
+import FakeAccommodationRepository from '../../repositories/fakes/FakeAccommodationRepository';
 import AccommodationRepository from '../../repositories/AccommodationRepository';
+
 
 type QueryAccommodationType = {
     id_user: string;
@@ -25,6 +27,11 @@ type ResponseType = {
 }
 
 class QueryAccommodationService {
+
+    constructor(private accommodationRepository: AccommodationRepository | FakeAccommodationRepository = new AccommodationRepository().getInstance()) {
+        this.accommodationRepository = accommodationRepository;
+    }
+
     public execute({
         id_user,
         title,
@@ -40,9 +47,7 @@ class QueryAccommodationService {
         bathrooms,
         price
     }: QueryAccommodationType): ResponseType {
-        const accommodationRepository = new AccommodationRepository().getInstance();
-
-        const foundAccommodations = accommodationRepository.query({
+        const foundAccommodations = this.accommodationRepository.query({
             id_user,
             title,
             description,

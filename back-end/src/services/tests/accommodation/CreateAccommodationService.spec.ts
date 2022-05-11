@@ -1,4 +1,6 @@
+import FakeAccommodationRepository from "../../../repositories/fakes/FakeAccommodationRepository";
 import CreateAccommodationService from "../../accommodation/CreateAccommodationService";
+import ShowAccommodationService from "../../accommodation/ShowAccommodationService";
 
 describe("CreateAccommodation", () => {
     const accommodationSuccess = {
@@ -19,7 +21,9 @@ describe("CreateAccommodation", () => {
     };
 
     it("Accommodation sucessfully created.", async () => {
-        const createAccommodation = new CreateAccommodationService();
+        const fakeAccommodationRepository = new FakeAccommodationRepository();
+        const createAccommodation = new CreateAccommodationService(fakeAccommodationRepository);
+        const showAccommodation = new ShowAccommodationService(fakeAccommodationRepository);
 
         const res = createAccommodation.execute({
             id_user: accommodationSuccess.id_user,
@@ -38,7 +42,10 @@ describe("CreateAccommodation", () => {
             price:accommodationSuccess.price
         });
 
-        expect(res.error).toBeFalsy();    
+        const show = showAccommodation.execute(res.data.id);
+
+        expect(res.error).toBeFalsy();
+        expect(show.error).toBeFalsy();
     })
 
 })

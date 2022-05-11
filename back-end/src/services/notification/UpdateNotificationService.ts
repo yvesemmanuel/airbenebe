@@ -1,4 +1,5 @@
 import Notification from "../../models/Notification";
+import FakeNotificationRepository from "../../repositories/fakes/FakeNotificationRepository";
 import NotificationRepository from "../../repositories/NotificationRepository";
 
 type ResponseType = {
@@ -13,10 +14,13 @@ type RequestType = {
 }
 
 class UpdateNotificationService {
-    public execute({ id_rental, show_date }: RequestType): ResponseType {
-        const notificationRepository = new NotificationRepository().getInstance()
 
-        const updatedNotification = notificationRepository.update(id_rental, show_date);
+    constructor(private notificationRepository: NotificationRepository | FakeNotificationRepository = new NotificationRepository().getInstance()) {
+        this.notificationRepository = notificationRepository;
+    }
+
+    public execute({ id_rental, show_date }: RequestType): ResponseType {
+        const updatedNotification = this.notificationRepository.update(id_rental, show_date);
 
         if (updatedNotification) {
             return {

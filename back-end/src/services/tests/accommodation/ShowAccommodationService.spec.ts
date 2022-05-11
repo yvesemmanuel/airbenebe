@@ -1,9 +1,9 @@
 import FakeAccommodationRepository from "../../../repositories/fakes/FakeAccommodationRepository";
 import CreateAccommodationService from "../../accommodation/CreateAccommodationService";
-import DeleteAccommodationService from "../../accommodation/DeleteAccommodationService";
+import ShowAccommodationService from "../../accommodation/ShowAccommodationService";
 
-describe("DeleteAccommodation", () => {
-    const deleteFail = "aaa"
+describe("ShowAccommodation", () => {
+    const ShowFail = "aaaa";
 
     const accommodationSuccess = {
         id_user: "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
@@ -22,10 +22,10 @@ describe("DeleteAccommodation", () => {
         price: 350
     };
 
-    it("Accommodation sucessfully Deleted.", async () => {
+    it("Accommodation sucessfully found.", async () => {
         const fakeAccommodationRepository = new FakeAccommodationRepository();
         const createAccommodation = new CreateAccommodationService(fakeAccommodationRepository);
-        const DeleteAccommodation = new DeleteAccommodationService(fakeAccommodationRepository);
+        const ShowAccommodation = new ShowAccommodationService(fakeAccommodationRepository);
 
         const res = createAccommodation.execute({
             id_user: accommodationSuccess.id_user,
@@ -44,18 +44,36 @@ describe("DeleteAccommodation", () => {
             price:accommodationSuccess.price
         });
 
-        const deleted = DeleteAccommodation.execute(res.data.id);
+        const show = ShowAccommodation.execute(res.data.id);
 
-        expect(deleted.error).toBeFalsy();    
+        expect(show.error).toBeFalsy();    
     })
 
-    it("Accommodation Deleted Fail", async () => {
+    it("Accommodation don't found", async () => {
         const fakeAccommodationRepository = new FakeAccommodationRepository();
-        const DeleteAccommodation = new DeleteAccommodationService(fakeAccommodationRepository);
+        const createAccommodation = new CreateAccommodationService(fakeAccommodationRepository);
+        const ShowAccommodation = new ShowAccommodationService(fakeAccommodationRepository);
 
-        const deleted = DeleteAccommodation.execute(deleteFail);
+        const res = createAccommodation.execute({
+            id_user: accommodationSuccess.id_user,
+            title: accommodationSuccess.title,
+            description: accommodationSuccess.description,
+            type: accommodationSuccess.type,
+            state:accommodationSuccess.state,
+            city:accommodationSuccess.city,
+            street:accommodationSuccess.street,
+            number:accommodationSuccess.number,
+            zipcode:accommodationSuccess.zipcode,
+            capacity:accommodationSuccess.capacity,
+            rooms:accommodationSuccess.rooms,
+            bathrooms:accommodationSuccess.bathrooms,
+            images: accommodationSuccess.images,
+            price:accommodationSuccess.price
+        });
 
-        expect(deleted.error).toBeTruthy();    
+        const show = ShowAccommodation.execute(ShowFail);
+
+        expect(show.error).toBeTruthy();
     })
 
 })

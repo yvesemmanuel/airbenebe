@@ -1,4 +1,5 @@
 import Rental from '../../models/Rental';
+import FakeRentalRepository from '../../repositories/fakes/FakeRentalRepository';
 import RentalRepository from '../../repositories/RentalRepository';
 
 type CreateRentalType = {
@@ -19,6 +20,11 @@ type ResponseType = {
 }
 
 class CreateRentalService {
+
+    constructor(private rentalRepository: RentalRepository | FakeRentalRepository = new RentalRepository().getInstance()) {
+        this.rentalRepository = rentalRepository;
+    }
+
     public execute({
         id_user,
         id_accommodation,
@@ -29,9 +35,7 @@ class CreateRentalService {
         start_date,
         end_date
     }: CreateRentalType): ResponseType {
-        const rentalRepository = new RentalRepository().getInstance()
-
-        const validDate = rentalRepository.validDate(id_accommodation, start_date, end_date);
+        const validDate = this.rentalRepository.validDate(id_accommodation, start_date, end_date);
 
         if (!validDate) {
             return {
@@ -41,7 +45,7 @@ class CreateRentalService {
             }
         }
 
-        const rental = rentalRepository.create({
+        const rental = this.rentalRepository.create({
             id_user,
             id_accommodation,
             guests,

@@ -1,5 +1,7 @@
 import Accommodation from '../../models/Accommodation';
+import FakeAccommodationRepository from '../../repositories/fakes/FakeAccommodationRepository';
 import AccommodationRepository from '../../repositories/AccommodationRepository';
+
 
 type ResponseType = {
     error: boolean,
@@ -8,10 +10,13 @@ type ResponseType = {
 }
 
 class ShowAccommodationService {
-    public execute(id: string): ResponseType {
-        const accommodationRepository = new AccommodationRepository().getInstance();
 
-        const foundAccommodation = accommodationRepository.findById(id);
+    constructor(private accommodationRepository: AccommodationRepository | FakeAccommodationRepository = new AccommodationRepository().getInstance()) {
+        this.accommodationRepository = accommodationRepository;
+    }
+
+    public execute(id: string): ResponseType {
+        const foundAccommodation = this.accommodationRepository.findById(id);
 
         if (foundAccommodation) {
             return {
