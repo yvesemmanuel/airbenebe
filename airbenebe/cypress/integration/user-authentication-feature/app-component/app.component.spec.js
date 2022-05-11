@@ -1,4 +1,4 @@
-describe("Teste de GUI do componente de acomodação", () => {
+describe("Teste de GUI da landing page", () => {
     beforeEach(() => {
         cy.visit("http://localhost:4200/");
         
