@@ -97,22 +97,26 @@ export class PaymentComponent implements OnInit {
       }
 
       this.rentalService.addRental(rental).subscribe({
+        next: nxt => {
+          const show: string = new Date(this.start.setDate(this.start.getDate() - 1)).toJSON();
+          this.notificationService.addNotification({
+            "id_user": id_user,
+            "id_rental": nxt.id,
+            "date": new Date().toJSON(),
+            "show_date": show,
+            "message": "Falta 1 dia para o seu check-in em " + this.accommodation.title + "!"
+          }).subscribe({
+            error: err => console.log(err)
+          });
+        },
         error: err => console.log(err)
       })
-
-      this.notificationService.addNotification({
-        "id_user": id_user,
-        "date": new Date().toJSON(),
-        "show_date": this.start.toJSON(),
-        "message": "Falta 1 dia para o seu check-in em " + this.accommodation.title + "!"
-      }).subscribe({
-        error: err => console.log(err)
-      });
 
       const start = this.stringifyDate(this.start);
       const end = this.stringifyDate(this.end);
       this.notificationService.addNotification({
         "id_user": this.accommodation.id_user,
+        "id_rental": "",
         "date": new Date().toJSON(),
         "show_date": new Date().toJSON(),
         "message": "Um usuário alugou " + this.accommodation.title + " do dia " + start + " até " + end + "."

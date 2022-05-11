@@ -1,6 +1,7 @@
 [{
         "id": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a5ad",
         "id_user": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
+        "id_rental": "46440d08-fd17-4761-9641-ac965adfcb49",
         "message": "Falta 1 dia para o seu check-in em Apartamento ruim!",
         "date": "2022-05-04T21:45:53.797Z",
         "show_date": "2022-05-04T03:00:00.000Z"
@@ -8,15 +9,17 @@
     {
         "id": "25fbc0bb-bfd0-41b2-9d4f-ebaba520a5ad",
         "id_user": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a4df",
+        "id_rental": "e824d012-06c7-4268-b7b1-8eb97cf84203",
         "message": "Falta 1 dia para o seu check-in em Casa na Praia maior de todas!",
-        "date": "2022-05-10T03:00:00.000Z",
-        "show_date": "2022-05-11T03:00:00.000Z"
+        "date": "2022-05-05T03:00:00.000Z",
+        "show_date": "2022-05-10T03:00:00.000Z"
     },
     {
         "id": "25fbc0bb-bfc0-41a2-9c4f-ebaba520a5fd",
         "id_user": "945724f2-8ce3-4142-bef0-dc95d3074e45",
+        "id_rental": "0a42c4d2-2112-4b0a-a65d-7df4cea1f66c",
         "message": "Falta 1 dia para o seu check-in em Casa na Praia maior de todas!",
         "date": "2022-05-20T14:48:25.015Z",
-        "show_date": "2022-05-21T03:00:00.000Z"
+        "show_date": "2022-05-20T03:00:00.000Z"
     }
 ]

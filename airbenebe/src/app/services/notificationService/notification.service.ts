@@ -29,4 +29,8 @@ export class NotificationService {
     return this.http.post<Notification>(this.notificationUrl, notification, this.httpOptions);
   }
 
+  updateNotification(id_rental: string, show_date: string): Observable<Notification> {
+    return this.http.patch<Notification>(this.notificationUrl, { id_rental, show_date }, this.httpOptions);
+  }
+
 }

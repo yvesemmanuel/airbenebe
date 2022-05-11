@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { Rental } from '../interfaces/Rental';
 import { RentalService } from '../services/rentalService/rental.service';
+
+import { NotificationService } from '../services/notificationService/notification.service';
 
 @Component({
   selector: 'app-edit-date-dialog',
@@ -17,6 +20,7 @@ export class EditDateDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   public dialogRef: MatDialogRef<EditDateDialogComponent>,
   private rentalService: RentalService,
+  private notificationService: NotificationService
   ) { }
   minDate: Date = new Date();
   maxDate: Date = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
@@ -39,7 +43,6 @@ export class EditDateDialogComponent implements OnInit {
     });
    }
 
-
   enableDate(date: Date): boolean {
     for (let rental of this.accRentals.filter(r => r.id != this.data.id)) {
       const start = new Date(rental.start_date);
@@ -55,6 +58,12 @@ export class EditDateDialogComponent implements OnInit {
     const start = this.range.value['start'].toJSON();
     const end = this.range.value['end'].toJSON();
     this.rentalService.updateRental(this.data.id, start, end).subscribe({
+      next: nxt => {
+        const show_date: string = new Date(new Date(nxt.start_date).setDate(new Date(nxt.start_date).getDate() - 1 )).toJSON();
+        this.notificationService.updateNotification(nxt.id, show_date).subscribe({
+          error: err => console.log(err)
+        })
+      },
       error: err => console.log(err)
     });
     this.closeDialog();

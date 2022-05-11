@@ -25,6 +25,7 @@ export class ConfirmDeleteDialogComponent implements OnInit {
     const end = this.stringifyDate(new Date(this.data.rental.end_date));
     this.notificationService.addNotification({
       "id_user": this.data.rental.accommodation.id_user,
+      "id_rental": "",
       "date": new Date().toJSON(),
       "show_date": new Date().toJSON(),
       "message": "O aluguel de " + this.data.rental.accommodation.title + " agendado para " + start + " até " + end + " foi cancelado."
