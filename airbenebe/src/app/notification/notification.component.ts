@@ -14,7 +14,6 @@ export class NotificationComponent implements OnInit {
 
   id_user: string = "";
   notifications: Notification[] = [];
-  notification!: Notification;
 
   ngOnInit(): void {
     const id = window.localStorage.getItem("loggedID");
@@ -31,10 +30,8 @@ export class NotificationComponent implements OnInit {
     })
   }
 
-  formatDate(date: string): string {
-    const formatedDate = date,
-      [yyyy, mm, dd, hh, mi] = date.split(/[/:\-T]/);
-    return `${dd}/${mm}/${yyyy}`;
+  stringifyDate(string_date: string): string {
+    const date: Date = new Date(string_date);
+    return date.toLocaleDateString("pt-Br");
   }
-  
 }

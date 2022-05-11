@@ -2,7 +2,7 @@ import Notification from '../../models/Notification';
 import NotificationRepository from '../../repositories/NotificationRepository';
 
 type QueryNotificationType = {
-    user_id: string;
+    id_user: string;
 };
 
 type ResponseType = {
@@ -13,12 +13,12 @@ type ResponseType = {
 
 class QueryNotificationService {
     public execute({
-        user_id,
+        id_user,
     }: QueryNotificationType): ResponseType {
         const notificationRepository = new NotificationRepository().getInstance();
 
         const foundNotifications = notificationRepository.query({
-            user_id
+            id_user
         });
 
         return {

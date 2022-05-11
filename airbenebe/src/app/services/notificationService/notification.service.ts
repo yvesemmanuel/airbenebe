@@ -18,10 +18,10 @@ export class NotificationService {
 
   constructor(private http: HttpClient) {}
 
-  getUserNotifications(user_id: string): Observable<Notification[]> {
+  getUserNotifications(id_user: string): Observable<Notification[]> {
     return this.http.get<Notification[]>(this.notificationUrl, {
       headers: { 'Content-Type': 'application/json' },
-      params: {"user_id": user_id}
+      params: {"id_user": id_user}
     });
   }
 
