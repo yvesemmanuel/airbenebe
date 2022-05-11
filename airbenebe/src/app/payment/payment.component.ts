@@ -101,7 +101,7 @@ export class PaymentComponent implements OnInit {
       })
 
       this.notificationService.addNotification({
-        "user_id": id_user,
+        "id_user": id_user,
         "date": new Date().toJSON(),
         "show_date": this.start.toJSON(),
         "message": "Falta 1 dia para o seu check-in em " + this.accommodation.title + "!"
@@ -112,7 +112,7 @@ export class PaymentComponent implements OnInit {
       const start = this.stringifyDate(this.start);
       const end = this.stringifyDate(this.end);
       this.notificationService.addNotification({
-        "user_id": this.accommodation.id_user,
+        "id_user": this.accommodation.id_user,
         "date": new Date().toJSON(),
         "show_date": new Date().toJSON(),
         "message": "Um usuário alugou " + this.accommodation.title + " do dia " + start + " até " + end + "."
