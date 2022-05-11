@@ -16,6 +16,7 @@ describe("Teste de GUI da listagem de reservas", () => {
         cy.contains('23').click();
         cy.contains('25').click();
         cy.contains('Confirmar').click();
+        cy.reload();
         cy.contains('De: 23/05/2022').click();
         cy.contains('Até: 25/05/2022').click();
         cy.contains('Noites: 2').click();

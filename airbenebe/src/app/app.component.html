@@ -31,8 +31,8 @@
         <button mat-menu-item routerLink="/register">Cadastrar</button>
     </div>
 
-    <div *ngIf="isLogged" name="profileIcon">
-        <button mat-menu-item routerLink="/notifications">Notificações</button>
+    <div *ngIf="isLogged">
+        <button mat-menu-item routerLink="/notifications" button-cy="notifications">Notificações</button>
         <div fxHide="false" fxHide.gt-sm>
             <button mat-menu-item routerLink="/myrentals">Minhas reservas</button>
             <button mat-menu-item routerLink="/myaccommodations">Meus imóveis</button>
