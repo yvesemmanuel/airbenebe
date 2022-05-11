@@ -8,7 +8,6 @@ const notificationController = new NotificationController();
 
 routes.get('/notifications', notificationController.index);
 routes.post('/notifications', notificationController.create);
-// routes.update('/notifications', notificationController.updated);
-// routes.delete('/notifications', notificationController.delete);
+routes.patch('/notifications', notificationController.update);
 
 export default routes;

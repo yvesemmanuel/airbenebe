@@ -3,6 +3,7 @@ import NotificationRepository from '../../repositories/NotificationRepository';
 
 type CreateNotificationType = {
     id_user: string;
+    id_rental: string;
     date: string;
     show_date: string;
     message: string;
@@ -17,6 +18,7 @@ type ResponseType = {
 class CreateNotificationService {
     public execute({
         id_user,
+        id_rental,
         date,
         show_date,
         message,
@@ -25,6 +27,7 @@ class CreateNotificationService {
 
         const notification = notificationRepository.create({
             id_user,
+            id_rental,
             date,
             show_date,
             message,

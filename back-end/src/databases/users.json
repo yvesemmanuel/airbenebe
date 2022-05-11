@@ -10,5 +10,11 @@
       "name": "Felipo Ubaldo",
       "email": "FelipoUlb@gmail.com",
       "password": "222"
+    },
+    {
+      "id": "1b055d79-5b9b-4013-945d-40ff169ed0c8",
+      "name": "Carlos Alberto",
+      "email": "carlito@gmail.com",
+      "password": "333"
     }
 ]

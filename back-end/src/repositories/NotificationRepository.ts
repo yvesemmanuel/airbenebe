@@ -1,8 +1,10 @@
 import { v4 } from 'uuid';
+import Accommodation from '../models/Accommodation';
 import Notification from '../models/Notification';
 
 type CreateNotificationType = {
     id_user: string;
+    id_rental: string;
     date: string;
     show_date: string;
     message: string;
@@ -19,6 +21,7 @@ class NotificationRepository {
 
     public create({
         id_user,
+        id_rental,
         date,
         show_date,
         message,
@@ -27,6 +30,7 @@ class NotificationRepository {
 
         notification.id = v4();
         notification.id_user = id_user;
+        notification.id_rental = id_rental;
         notification.date = date;
         notification.show_date = show_date;
         notification.message = message;
@@ -42,8 +46,20 @@ class NotificationRepository {
     }
 
     public query(queryparams: QueryNotificationType): Notification[] {
-        const foundNotifications = this.notifications.filter(notification => (notification.id_user == queryparams["id_user"]) && (this.checkDate(notification.show_date)));
+        const foundNotifications = this.notifications.filter(notification => Object.keys(queryparams).filter(k => queryparams[k]).every(param => notification[param as keyof typeof notification] == queryparams[param]) && this.checkDate(notification.show_date));
         return foundNotifications.reverse();
+    }
+
+    public update(id_rental: string, show_date: string): Notification | undefined {
+        const foundNotification = this.notifications.find(notification => notification.id_rental == id_rental);
+        console.log(show_date);
+        if (foundNotification) {
+            foundNotification.show_date = show_date
+
+            return foundNotification;
+        }
+
+        return undefined;
     }
 
     public getInstance(): NotificationRepository {

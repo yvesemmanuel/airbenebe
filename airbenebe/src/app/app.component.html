@@ -1,6 +1,6 @@
 <mat-toolbar *ngIf="!hideHeader" class="header" fxLayout="row" fxLayoutAlign="space-between center">
-    <img class="logo" src="assets/logo/logo.png" alt="Airbenebe logo" fxShow="false" fxShow.gt-md>
-    <img class="logo" src="assets/logo/icon.png" alt="Airbenebe icon" fxHide="false" fxHide.gt-md>
+    <img class="logo" src="assets/logo/logo.png" alt="Airbenebe logo" fxShow="false" fxShow.gt-md routerLink="">
+    <img class="logo" src="assets/logo/icon.png" alt="Airbenebe icon" fxHide="false" fxHide.gt-md routerLink="">
 
     <div *ngIf="isLogged" class="nav-options" fxLayoutGap="50px" fxShow="false" fxShow.gt-sm>
         <span class="nav-btn" routerLink="/listing">Alugue um imóvel</span>
