@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'airbenebe';
   isLogged: boolean = false;
   hideHeader: boolean = false;
@@ -21,10 +21,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
-  logout() {
+  logout(){
     window.localStorage.removeItem("loggedID")
     this.isLogged = false;
   }

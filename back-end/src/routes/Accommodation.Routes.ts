@@ -8,6 +8,7 @@ const accommodationController = new AccommodationController();
 
 routes.get('/accommodations', accommodationController.index);
 routes.get('/accommodations/:id', accommodationController.show);
+routes.get('/accommodations/city/:city', accommodationController.findByCity);
 routes.post('/accommodations', accommodationController.create);
 routes.delete('/accommodations/:id', accommodationController.delete);
 

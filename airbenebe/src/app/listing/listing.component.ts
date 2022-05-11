@@ -12,18 +12,30 @@ export class ListingComponent implements OnInit {
   constructor(private accommodationService: AccommodationService) { }
   
   public accommodations: Accommodation[] = [];
+  public city: string = "";
 
   ngOnInit(): void {
-    this.getAccommodations()
+    this.getAccommodations();
   }
 
-  getAccommodations () {
+  getAccommodations(): void {
     this.accommodationService.getAccommodations().subscribe(result => {
-      this.accommodations = result
+      this.accommodations = result;
     })
   }
 
   stringifyPrice(price: number): string {
     return `R$ ${price.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
+  }
+
+  citySearch(): void {
+    this.accommodationService.getCityAccommodations(this.city).subscribe(result => {
+      this.accommodations = result;
+    })
+  }
+
+  clearSearch(): void {
+    this.getAccommodations();
+    this.city = "";
   }
 }

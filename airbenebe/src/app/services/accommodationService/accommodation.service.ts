@@ -40,4 +40,8 @@ export class AccommodationService {
   deleteAccommodation(id: string): Observable<Accommodation> {
     return this.http.delete<Accommodation>(`${this.accommodationUrl}/${id}`, this.httpOptions);
   }
+
+  getCityAccommodations(city: string): Observable<Accommodation[]> {
+    return this.http.get<Accommodation[]>(`${this.accommodationUrl}/city/${city}`);
+  }
 }

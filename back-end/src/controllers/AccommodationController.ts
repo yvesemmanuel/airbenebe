@@ -4,6 +4,7 @@ import CreateAccommodationService from '../services/accommodation/CreateAccommod
 import ShowAccommodationService from '../services/accommodation/ShowAccommodationService';
 import DeleteAccommodationService from '../services/accommodation/DeleteAccommodationService';
 import QueryAccommodationService from '../services/accommodation/QueryAccommodationService';
+import CityAccommodationService from '../services/accommodation/CityAccommodationService';
 
 class AccommodationController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -110,6 +111,20 @@ class AccommodationController {
             price
         });
         
+        return response.status(200).json(data.data);
+    };
+
+    public async findByCity(request: Request, response: Response): Promise<Response> {
+        const { city } = request.params;
+
+        const cityAccommodations = new CityAccommodationService();
+
+        const data = cityAccommodations.execute(city);
+
+        if (data.error) {
+            return response.status(404).json({ "message": data.message });
+        }
+
         return response.status(200).json(data.data);
     };
 };
