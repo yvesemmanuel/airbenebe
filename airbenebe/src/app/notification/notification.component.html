@@ -5,18 +5,13 @@
 
 <mat-card *ngFor="let notification of notifications">
 
-    <mat-card-content>
-        <div>
+    <mat-card>
+        <mat-card-content>
             <h2>{{notification?.message}}</h2>
-        </div>
-
-        <div fxLayoutAlign="start center">
-
-            <div class="date-info">
-                <span>{{ formatDate(notification.date) }}</span>
-            </div>
-
-        </div>
-    </mat-card-content>
-
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-footer fxLayoutAlign="end">
+            <span>{{ stringifyDate(notification.show_date) }}</span>
+        </mat-card-footer>
+    </mat-card>
 </mat-card>

@@ -7,12 +7,12 @@ import ShowNotificationService from '../services/notification/ShowNotificationSe
 
 class NotificationController {
     public async create(request: Request, response: Response): Promise<Response> {
-        const { user_id, date, show_date, message } = request.body;
+        const { id_user, date, show_date, message } = request.body;
 
         const createNotification = new CreateNotificationService();
 
         const data = createNotification.execute({
-            user_id,
+            id_user,
             date,
             show_date,
             message
@@ -41,12 +41,12 @@ class NotificationController {
 
 
     public async index(request: Request, response: Response): Promise<Response> {
-        const user_id = request.query.user_id as string;
+        const id_user = request.query.id_user as string;
 
         const queryNotification = new QueryNotificationService();
 
         const data = queryNotification.execute({
-            user_id,
+            id_user,
         });
 
         return response.status(200).json(data.data);
