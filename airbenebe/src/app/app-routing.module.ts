@@ -9,6 +9,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { AccommodationDetailComponent } from './accommodation-detail/accommodation-detail.component';
 import { ListingComponent } from './listing/listing.component';
 import { RentalComponent } from './rental/rental.component';
+import { NotificationComponent } from './notification/notification.component';
 import { AddAccommodationComponent } from './add-accommodation/add-accommodation.component';
 import { UserAccommodationsComponent } from './user-accommodations/user-accommodations.component';
 
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: "myrentals",
     component: RentalComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "notifications",
+    component: NotificationComponent,
     canActivate: [AuthGuard]
   },
   {

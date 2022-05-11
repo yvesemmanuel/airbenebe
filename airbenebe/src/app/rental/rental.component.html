@@ -1,49 +1,49 @@
 <mat-card>
-  <mat-card-title>Minhas reservas</mat-card-title>
-  <mat-divider inset></mat-divider>
+    <mat-card-title>Minhas reservas</mat-card-title>
+    <mat-divider inset></mat-divider>
 
 </mat-card>
 <mat-card *ngFor="let rental of rentals">
-  <mat-card-content>
-    <div>
-      <h2>
-        {{rental?.accommodation?.title}}
-      </h2>
-    </div>
+    <mat-card-content>
+        <div>
+            <h2>
+                {{rental?.accommodation?.title}}
+            </h2>
+        </div>
 
-    <div class="image-container">
-      <img mat-card-image src="{{rental?.accommodation?.images[0]}}" alt="Foto Imóvel">
-    </div>
+        <div class="image-container">
+            <img mat-card-image src="{{rental?.accommodation?.images[0]}}" alt="Foto Imóvel">
+        </div>
 
-    <div fxLayoutAlign="start center">
+        <div fxLayoutAlign="start center">
 
-      <div class="date-info">
-        <strong>De: </strong>
-        <span>{{ formatDate(rental.start_date) }}</span> 
-        <br>
-        <strong>Até: </strong>
-        <span>{{ formatDate(rental.end_date) }}</span>
-      </div>
+            <div class="date-info">
+                <strong>De: </strong>
+                <span>{{ formatDate(rental.start_date) }}</span>
+                <br>
+                <strong>Até: </strong>
+                <span>{{ formatDate(rental.end_date) }}</span>
+            </div>
 
-    <div class="nights-prices">
-      <div>
-        <strong>Noites:</strong> {{rental.nights}}
-      </div>
-      
-      <div>
-        <strong>Preço:</strong> {{stringifyPrice(rental.price)}}
-      </div>
-    </div>
+            <div class="nights-prices">
+                <div>
+                    <strong>Noites:</strong> {{rental.nights}}
+                </div>
 
-    </div>
+                <div>
+                    <strong>Preço:</strong> {{stringifyPrice(rental.price)}}
+                </div>
+            </div>
 
-  </mat-card-content>
+        </div>
 
-  <mat-card-actions>
-    <button mat-raised-button routerLink="/accommodation/{{rental.accommodation?.id}}" routerLinkActive="router-link-active">Ir para anúncio</button>
-    <button mat-raised-button (click)="openEditDateDialog(rental)" [disabled]="closeDate(rental.start_date)">Editar data</button>
-    <button mat-raised-button (click)="cancelResevation(rental.id)" class='cancel-btn' color='warn' [disabled]="closeDate(rental.start_date)" button-cy="cancel">Cancelar Reserva</button>
-  </mat-card-actions>
+    </mat-card-content>
 
-  <mat-divider inset></mat-divider>
+    <mat-card-actions>
+        <button mat-raised-button routerLink="/accommodation/{{rental.accommodation?.id}}" routerLinkActive="router-link-active">Ir para anúncio</button>
+        <button mat-raised-button (click)="openEditDateDialog(rental)" [disabled]="closeDate(rental.start_date)">Editar data</button>
+        <button mat-raised-button (click)="cancelResevation(rental)" class='cancel-btn' color='warn' [disabled]="closeDate(rental.start_date)" button-cy="cancel">Cancelar Reserva</button>
+    </mat-card-actions>
+
+    <mat-divider inset></mat-divider>
 </mat-card>

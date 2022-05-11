@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-title>Minhas notificações</mat-card-title>
+    <mat-divider inset></mat-divider>
+</mat-card>
+
+<mat-card *ngFor="let notification of notifications">
+
+    <mat-card-content>
+        <div>
+            <h2>{{notification?.message}}</h2>
+        </div>
+
+        <div fxLayoutAlign="start center">
+
+            <div class="date-info">
+                <span>{{ formatDate(notification.date) }}</span>
+            </div>
+
+        </div>
+    </mat-card-content>
+
+</mat-card>
